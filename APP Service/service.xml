@@ -1,0 +1,72 @@
+   <?xml version="1.0" encoding='utf-8'?>
+   <service xmlns="http://www.w3.org/2007/app"
+            xmlns:atom="http://www.w3.org/2005/Atom"
+            xmlns:sword="http://purl.org/net/sword/terms/">
+    <sword:version>2.0</sword:version>
+    <sword:maxUploadSize>1024</sword:maxUploadSize>
+    
+     <workspace>
+       <atom:title>Information Resources</atom:title>
+       <collection
+           href="http://example.org/redbox-core/rest/repo/informationresources/datasets" >
+         <atom:title>Datasets</atom:title>
+         <accept>application/atom+xml;type=entry</accept>
+         <sword:collectionPolicy>http://...</sword:collectionPolicy>
+         <sword:treatment>treatment description</sword:treatment>
+         <categories fixed="yes">
+           <atom:category
+             scheme="http://vivoweb.org/ontology/core#"
+             term="Dataset" />
+         </categories>
+       </collection>
+       <collection
+           href="http://example.org/redbox-core/rest/repo/informationresources/documents/books" >
+         <atom:title>Books</atom:title>
+         <accept>application/atom+xml;type=entry</accept>
+         <sword:collectionPolicy>http://...</sword:collectionPolicy>
+         <sword:treatment>treatment description</sword:treatment>
+         <categories fixed="yes">
+           <atom:category
+             scheme="http://purl.org/ontology/bibo/"
+             term="Book" />
+         </categories>
+       </collection>
+     </workspace>
+     
+     <workspace>
+       <atom:title>Agents</atom:title>
+       <collection
+           href="http://example.org/redbox-core/rest/repo/agents/people" >
+         <atom:title>People</atom:title>
+         <accept>application/atom+xml;type=entry</accept>
+         <categories fixed="yes">
+           <atom:category
+             scheme="http://xmlns.com/foaf/0.1/"
+             term="Person" />
+         </categories>
+       </collection>
+       <collection
+           href="http://example.org/redbox-core/rest/repo/agents/people" >
+         <atom:title>Organisations</atom:title>
+         <accept>application/atom+xml;type=entry</accept>
+         <categories fixed="yes">
+           <atom:category
+             scheme="http://xmlns.com/foaf/0.1/"
+             term="Organization" />
+         </categories>
+       </collection>
+     </workspace>
+     
+     <workspace>
+       <atom:title>ReDBox Core System</atom:title>
+       <collection
+           href="" >
+         <atom:title>Event queues</atom:title>
+         <categories fixed="yes">
+           <atom:category
+             scheme=""
+             term="" />
+         </categories>
+       </collection>
+     </workspace>
+   </service>
