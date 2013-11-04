@@ -1,0 +1,27 @@
+   <?xml version="1.0" encoding='utf-8'?>
+   <service xmlns="http://www.w3.org/2007/app"
+            xmlns:atom="http://www.w3.org/2005/Atom"
+            xmlns:sword="http://purl.org/net/sword/terms/">
+    <sword:version>2.0</sword:version>
+    <sword:maxUploadSize>0</sword:maxUploadSize>
+    
+     <workspace>
+       <atom:title>Information Resources</atom:title>
+       <collection
+           href="http://example.org/redbox-core/rest/repo/informationresources/datasets" >
+         <atom:title>Datasets</atom:title>
+         <!-- 
+         Use an empty accept to indicate that 
+         this collection won't accept submissions
+         -->
+         <accept/>
+         <sword:collectionPolicy>http://...</sword:collectionPolicy>
+         <categories fixed="yes">
+           <atom:category
+             scheme="http://vivoweb.org/ontology/core#"
+             term="Dataset" />
+         </categories>
+       </collection>
+     </workspace>
+
+   </service>
