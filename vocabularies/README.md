@@ -1,0 +1,1 @@
+A number of these vocabs were sourced from https://github.com/AKSW/Xturtle/tree/develop/vocabularies

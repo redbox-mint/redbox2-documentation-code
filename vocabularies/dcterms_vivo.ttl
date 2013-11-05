@@ -1,0 +1,140 @@
+@prefix : <http://vivoweb.org/ontology/core/vivo-dcterms-public-1.5.owl#> .
+@prefix geo: <http://aims.fao.org/aos/geopolitical.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pvs: <http://vivoweb.org/ontology/provenance-support#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl2: <http://www.w3.org/2006/12/owl2-xml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skco: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skos: <http://www.w3.org/2008/05/skos#> .
+@prefix swvs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix vivo: <http://vivoweb.org/ontology/core#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix scirr: <http://vivoweb.org/ontology/scientific-research-resource#> .
+@prefix vitro: <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
+@prefix dcelem: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://vivoweb.org/ontology/core/vivo-dcterms-public-1.5.owl> .
+
+<http://vivoweb.org/ontology/core/vivo-dcterms-public-1.5.owl> rdf:type owl:Ontology ;
+                                                               
+                                                               rdfs:label "Dublin Core terms"@en-us .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  http://purl.org/dc/terms/description
+
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/modified
+
+dcterms:modified rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/source
+
+dcterms:source rdf:type owl:AnnotationProperty .
+
+
+
+###  http://vitro.mannlib.cornell.edu/ns/vitro/0.7#descriptionAnnot
+
+vitro:descriptionAnnot rdf:type owl:AnnotationProperty .
+
+
+
+###  http://vitro.mannlib.cornell.edu/ns/vitro/0.7#exampleAnnot
+
+vitro:exampleAnnot rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2008/05/skos#scopeNote
+
+skos:scopeNote rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://purl.org/dc/terms/contributor
+
+dcterms:contributor rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:label "contributor"@en-us ;
+                    
+                    skos:scopeNote "Used to link a bibliographic item to one of its contributor: can be an author, an editor, a publisher, etc."@en .
+
+
+
+###  http://purl.org/dc/terms/isReferencedBy
+
+dcterms:isReferencedBy rdf:type owl:ObjectProperty ;
+                       
+                       rdfs:label "isReferencedBy"@en-us ;
+                       
+                       vitro:descriptionAnnot "This term is intended to be used with non-literal values as defined in the DCMI Abstract Model (http://dublincore.org/documents/abstract-model/). As of December 2007, the DCMI Usage Board is seeking a way to express this intention with a formal range declaration."^^xsd:string ;
+                       
+                       skos:scopeNote "Used to relate a reference citation to a bibliographic resource."@en .
+
+
+
+###  http://purl.org/dc/terms/isVersionOf
+
+dcterms:isVersionOf rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:label "isVersionOf"@en-us ;
+                    
+                    vitro:exampleAnnot "Document1 isVersionOf Document2"^^xsd:string ;
+                    
+                    vitro:descriptionAnnot "This term is intended to be used with non-literal values as defined in the DCMI Abstract Model (http://dublincore.org/documents/abstract-model/). As of December 2007, the DCMI Usage Board is seeking a way to express this intention with a formal range declaration."^^xsd:string .
+
+
+
+###  http://purl.org/dc/terms/publisher
+
+dcterms:publisher rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "publisher"@en-us ;
+                  
+                  vitro:descriptionAnnot """Public definition source:  http://dublincore.org/2008/01/14/dcterms.rdf#   .
+Examples of a Publisher include a person, an organization, or a service. Typically, the name of a Publisher should be used to indicate the entity."""^^xsd:string ;
+                  
+                  skos:scopeNote "Used to link a bibliographic item to its publisher."@en .
+
+
+
+###  http://purl.org/dc/terms/relation
+
+dcterms:relation rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "relation"@en-us ;
+                 
+                 vitro:descriptionAnnot "This term is intended to be used with non-literal values as defined in the DCMI Abstract Model (http://dublincore.org/documents/abstract-model/). As of December 2007, the DCMI Usage Board is seeking a way to express this intention with a formal range declaration."^^xsd:string .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+

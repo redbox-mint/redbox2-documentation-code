@@ -1,0 +1,12 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix : <http://purl.org/dc/terms/> .
+@base <http://example.org/informationreseources/books/> .
+
+<1>
+  a bibo:Book;
+  :title "Reflections of the semantic knowledge of turtles" ;
+  :abstract "Presents an historical account of one researcher's life with turtles";
+  .
+

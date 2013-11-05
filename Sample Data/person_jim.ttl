@@ -1,0 +1,16 @@
+@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:<http://www.w3.org/2002/07/owl#> .
+@prefix :<http://xmlns.com/foaf/0.1/> .
+@prefix for:<http://purl.org/asc/1297.0/2008/for/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix toa:<http://purl.org/asc/1297.0/1993/toa/> .
+@base <http://example.org/agents/people/> .
+
+<1234> 
+   a   :Person   ; 
+   :familyName   "Smith" ;
+   :givenName "James" ;
+   :name "Jim Smith" ;
+   dc:subject <http://purl.org/asc/1297.0/2008/for/01> ;
+   dc:subject toa:AppliedResearch;
+   .

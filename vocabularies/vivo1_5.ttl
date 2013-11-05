@@ -1,0 +1,5624 @@
+@prefix : <http://vivoweb.org/ontology/core#> .
+@prefix afn: <http://jena.hpl.hp.com/ARQ/function#> .
+@prefix c4o: <http://purl.org/spar/c4o/> .
+@prefix ero: <http://purl.obolibrary.org/obo/> .
+@prefix geo: <http://aims.fao.org/aos/geopolitical.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pvs: <http://vivoweb.org/ontology/provenance-support#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl2: <http://www.w3.org/2006/12/owl2-xml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skco: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skos: <http://www.w3.org/2008/05/skos#> .
+@prefix swvs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix vivo: <http://vivoweb.org/ontology/core#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix fabio: <http://purl.org/spar/fabio/> .
+@prefix scirr: <http://vivoweb.org/ontology/scientific-research-resource#> .
+@prefix vitro: <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#> .
+@prefix dcelem: <http://purl.org/dc/elements/1.1/> .
+@prefix scires: <http://vivoweb.org/ontology/scientific-research#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vitro-public: <http://vitro.mannlib.cornell.edu/ns/vitro/public#> .
+@base <http://vivoweb.org/ontology/core> .
+
+<http://vivoweb.org/ontology/core> rdf:type owl:Ontology ;
+                                   
+                                   rdfs:label "VIVO core"@en-us ;
+                                   
+                                   owl:imports <http://vitro.mannlib.cornell.edu/ns/vitro/0.7> ,
+                                               <http://vivoweb.org/ontology/core/dateTimeValuePrecision.owl> ,
+                                               <http://vivoweb.org/ontology/core/documentStatus.owl> ,
+                                               <http://vivoweb.org/ontology/core/geopolitical.tbox.ver1.1-11-18-11.owl> ,
+                                               <http://vivoweb.org/ontology/core/vivo-bibo-public-1.5.owl> ,
+                                               <http://vivoweb.org/ontology/core/vivo-c4o-public-1.5.owl> ,
+                                               <http://vivoweb.org/ontology/core/vivo-dcelements-public-1.5.owl> ,
+                                               <http://vivoweb.org/ontology/core/vivo-dcterms-public-1.5.owl> ,
+                                               <http://vivoweb.org/ontology/core/vivo-event-public-1.5.owl> ,
+                                               <http://vivoweb.org/ontology/core/vivo-fabio-public-1.5.owl> ,
+                                               <http://vivoweb.org/ontology/core/vivo-foaf-public-1.5.owl> ,
+                                               <http://vivoweb.org/ontology/core/vivo-pws-public-1.5.owl> ,
+                                               <http://vivoweb.org/ontology/core/vivo-skos-public-1.5.owl> .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  http://vivoweb.org/ontology/core#mostSpecificType
+
+:mostSpecificType rdf:type owl:AnnotationProperty ;
+                  
+                  rdfs:label "most specific type"@en-us .
+
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://aims.fao.org/aos/geopolitical.owl#hasMember
+
+geo:hasMember rdfs:subPropertyOf :hasCurrentMember .
+
+
+
+###  http://aims.fao.org/aos/geopolitical.owl#isInGroup
+
+geo:isInGroup rdfs:subPropertyOf :currentMemberOf .
+
+
+
+###  http://purl.org/ontology/bibo/distributor
+
+
+
+
+###  http://purl.org/ontology/bibo/reproducedIn
+
+
+
+
+###  http://purl.org/ontology/bibo/reviewOf
+
+
+
+
+###  http://purl.org/ontology/bibo/translationOf
+
+
+
+
+###  http://purl.org/ontology/bibo/translator
+
+
+
+
+###  http://vivoweb.org/ontology/core#administeredBy
+
+:administeredBy rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "administered by"@en-us ;
+                
+                vitro:descriptionAnnot "Note that the administering department is not the central research administration office (such as University of Florida DSP or Cornell OSP) -- we didn't see a need to record a relationship to that office because it implicitly manages all grants. Also note that this is the administering organization for the grant at the awardee side."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#administers
+
+:administers rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "administers grant"@en-us ;
+             
+             vitro:descriptionAnnot "Note that the administering department is not the central research administration office (such as University of Florida DSP or Cornell OSP) -- we didn't see a need to record a relationship to that office because it implicitly manages all grants. Also note that this is the administering organization for the grant at the awardee side."^^xsd:string ;
+             
+             owl:inverseOf :administeredBy .
+
+
+
+###  http://vivoweb.org/ontology/core#advisee
+
+:advisee rdf:type owl:ObjectProperty ;
+         
+         rdfs:label "advisee"@en-us ;
+         
+         rdfs:domain :AdvisingRelationship ;
+         
+         owl:inverseOf :adviseeIn ;
+         
+         rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#adviseeIn
+
+:adviseeIn rdf:type owl:ObjectProperty ;
+           
+           rdfs:label "advisee in"@en-us ;
+           
+           rdfs:range :AdvisingRelationship ;
+           
+           rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#advisingContributionTo
+
+:advisingContributionTo rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:label "advising contribution to"@en-us ;
+                        
+                        rdfs:domain :AdvisingRelationship ;
+                        
+                        rdfs:range :EducationalTraining ;
+                        
+                        owl:inverseOf :contributingAdvising .
+
+
+
+###  http://vivoweb.org/ontology/core#advisor
+
+:advisor rdf:type owl:ObjectProperty ;
+         
+         rdfs:label "advisor"@en-us ;
+         
+         rdfs:domain :AdvisingRelationship ;
+         
+         owl:inverseOf :advisorIn ;
+         
+         rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#advisorIn
+
+:advisorIn rdf:type owl:ObjectProperty ;
+           
+           rdfs:label "advisees"@en-us ;
+           
+           rdfs:range :AdvisingRelationship ;
+           
+           rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#affiliatedOrganization
+
+:affiliatedOrganization rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:label "affliliated organization"@en-us ;
+                        
+                        rdfs:range foaf:Organization ;
+                        
+                        rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#assignee
+
+:assignee rdf:type owl:ObjectProperty ;
+          
+          rdfs:label "assignee"@en-us ;
+          
+          rdfs:domain bibo:Patent ;
+          
+          rdfs:range foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#assigneeFor
+
+:assigneeFor rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "assignee for"@en-us ;
+             
+             rdfs:range bibo:Patent ;
+             
+             owl:inverseOf :assignee ;
+             
+             rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#associatedRole
+
+:associatedRole rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "associated role"@en-us ;
+                
+                rdfs:domain :Position ;
+                
+                rdfs:range :Role .
+
+
+
+###  http://vivoweb.org/ontology/core#associatedWithPosition
+
+:associatedWithPosition rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:label "associated with position"@en-us ;
+                        
+                        rdfs:range :Position ;
+                        
+                        rdfs:domain :Role ;
+                        
+                        owl:inverseOf :associatedRole .
+
+
+
+###  http://vivoweb.org/ontology/core#attendeeRoleOf
+
+:attendeeRoleOf rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "attendee role of"@en-us ;
+                
+                rdfs:domain :AttendeeRole ;
+                
+                rdfs:subPropertyOf :roleOf .
+
+
+
+###  http://vivoweb.org/ontology/core#authorInAuthorship
+
+:authorInAuthorship rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:label "selected publications"@en-us ;
+                    
+                    rdfs:range :Authorship .
+
+
+
+###  http://vivoweb.org/ontology/core#awardConferred
+
+:awardConferred rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "award or honor given"@en-us ;
+                
+                owl:inverseOf :awardConferredBy ;
+                
+                rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#awardConferredBy
+
+:awardConferredBy rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "award conferred by"@en-us ;
+                  
+                  rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#awardOrHonor
+
+:awardOrHonor rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "awards and honors"@en-us ;
+              
+              rdfs:range :AwardReceipt ;
+              
+              owl:inverseOf :awardOrHonorFor ;
+              
+              rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#awardOrHonorFor
+
+:awardOrHonorFor rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "award or honor for"@en-us ;
+                 
+                 rdfs:domain :AwardReceipt ;
+                 
+                 rdfs:range foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#awardsGrant
+
+:awardsGrant rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "awards grant"@en-us ;
+             
+             rdfs:range :Grant ;
+             
+             owl:inverseOf :grantAwardedBy ;
+             
+             rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#clinicalRoleOf
+
+:clinicalRoleOf rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "clinical role of"@en-us ;
+                
+                rdfs:domain :ClinicalRole ;
+                
+                rdfs:subPropertyOf :roleOf ;
+                
+                rdfs:range foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#co-PrincipalInvestigatorRoleOf
+
+:co-PrincipalInvestigatorRoleOf rdf:type owl:ObjectProperty ;
+                                
+                                rdfs:label "co-principal investigator role of"@en-us ;
+                                
+                                rdfs:domain :CoPrincipalInvestigatorRole ;
+                                
+                                owl:inverseOf :hasCo-PrincipalInvestigatorRole ;
+                                
+                                rdfs:subPropertyOf :investigatorRoleOf ;
+                                
+                                rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#conceptAssociatedWith
+
+:conceptAssociatedWith rdf:type owl:ObjectProperty ;
+                       
+                       rdfs:label "concept for"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#contributingAdvising
+
+:contributingAdvising rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:label "contributing advising relationship"@en-us ;
+                      
+                      rdfs:range :AdvisingRelationship ;
+                      
+                      rdfs:domain :EducationalTraining .
+
+
+
+###  http://vivoweb.org/ontology/core#contributingRole
+
+:contributingRole rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "contributor"@en-us ;
+                  
+                  rdfs:range :Role ;
+                  
+                  rdfs:subPropertyOf :relatedRole .
+
+
+
+###  http://vivoweb.org/ontology/core#courseOfferedBy
+
+:courseOfferedBy rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "offered by"@en-us ;
+                 
+                 rdfs:subPropertyOf event:agent ;
+                 
+                 rdfs:domain :Course ;
+                 
+                 rdfs:subPropertyOf :offeredBy ;
+                 
+                 owl:inverseOf :offersCourse ;
+                 
+                 rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#credentialOf
+
+:credentialOf rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "credential of"@en-us ;
+              
+              rdfs:domain :IssuedCredential ;
+              
+              rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#currentMemberOf
+
+:currentMemberOf rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "current member of"@en-us ;
+                 
+                 vitro:descriptionAnnot "Since we have defined geopolitical.owl.hasMember to be a subproperty of core:hasMember, we should not make changes to this property that would change the definition of geopolitical.owl.hasMember in ways that may make it inconsistent with its usage in other ontologies."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#currentlyHeadOf
+
+:currentlyHeadOf rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "currently head of"@en-us ;
+                 
+                 owl:inverseOf :currentlyHeadedBy ;
+                 
+                 rdfs:range foaf:Organization ;
+                 
+                 rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#currentlyHeadedBy
+
+:currentlyHeadedBy rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "currently headed by"@en-us ;
+                   
+                   rdfs:domain foaf:Organization ;
+                   
+                   rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#dateFiled
+
+:dateFiled rdf:type owl:ObjectProperty ;
+           
+           rdfs:label "date filed"@en-us ;
+           
+           rdfs:domain bibo:Patent ;
+           
+           rdfs:range :DateTimeValue ;
+           
+           rdfs:subPropertyOf :dateTimeValue .
+
+
+
+###  http://vivoweb.org/ontology/core#dateIssued
+
+:dateIssued rdf:type owl:ObjectProperty ;
+            
+            rdfs:label "date issued"@en-us ;
+            
+            rdfs:range :DateTimeValue ;
+            
+            rdfs:subPropertyOf :dateTimeValue .
+
+
+
+###  http://vivoweb.org/ontology/core#dateTimeInterval
+
+:dateTimeInterval rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "date/time interval"@en-us ;
+                  
+                  rdfs:range :DateTimeInterval .
+
+
+
+###  http://vivoweb.org/ontology/core#dateTimePrecision
+
+:dateTimePrecision rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "date/time precision"@en-us ;
+                   
+                   rdfs:domain :DateTimeValue ;
+                   
+                   rdfs:range :DateTimeValuePrecision .
+
+
+
+###  http://vivoweb.org/ontology/core#dateTimeValue
+
+:dateTimeValue rdf:type owl:ObjectProperty ;
+               
+               rdfs:label "date/time value"@en-us ;
+               
+               rdfs:range :DateTimeValue .
+
+
+
+###  http://vivoweb.org/ontology/core#degreeCandidacy
+
+:degreeCandidacy rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "degree candidacy"@en-us ;
+                 
+                 rdfs:range :AcademicDegree ;
+                 
+                 rdfs:domain :AdvisingRelationship .
+
+
+
+###  http://vivoweb.org/ontology/core#degreeEarned
+
+:degreeEarned rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "degree earned"@en-us ;
+              
+              rdfs:range :AcademicDegree ;
+              
+              rdfs:domain :EducationalTraining ;
+              
+              owl:inverseOf :degreeOutcomeOf ;
+              
+              rdfs:subPropertyOf :outcome .
+
+
+
+###  http://vivoweb.org/ontology/core#degreeOfferedBy
+
+:degreeOfferedBy rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "offered by"@en-us ;
+                 
+                 vitro:descriptionAnnot "This is done through a restriction on academic degree to allow the values from to be foaf:organization to be used as the range."^^xsd:string ;
+                 
+                 rdfs:domain :AcademicDegree ;
+                 
+                 rdfs:subPropertyOf :offeredBy ;
+                 
+                 owl:inverseOf :offersDegree .
+
+
+
+###  http://vivoweb.org/ontology/core#degreeOutcomeOf
+
+:degreeOutcomeOf rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "degree outcome of"@en-us ;
+                 
+                 rdfs:domain :AcademicDegree ;
+                 
+                 rdfs:range :EducationalTraining ;
+                 
+                 rdfs:subPropertyOf :outcomeOf .
+
+
+
+###  http://vivoweb.org/ontology/core#distributes
+
+:distributes rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "distributes"@en-us ;
+             
+             vitro:descriptionAnnot "Public Description for bibo:distributor taken from here:  http://bibotools.googlecode.com/svn/bibo-ontology/trunk/doc/index.html ."^^xsd:string ;
+             
+             owl:inverseOf bibo:distributor .
+
+
+
+###  http://vivoweb.org/ontology/core#distributesFundingFrom
+
+:distributesFundingFrom rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:label "distributes funding from"@en-us ;
+                        
+                        vitro:descriptionAnnot "For example, National Science Foundation providesFundingThrough Graduate Research Fellowship Program; National Institutes of Health providesFundingThrough National Center for Research Resources. "^^xsd:string ;
+                        
+                        rdfs:domain :FundingOrganization ;
+                        
+                        rdfs:range :FundingOrganization ;
+                        
+                        owl:inverseOf :providesFundingThrough .
+
+
+
+###  http://vivoweb.org/ontology/core#domesticGeographicFocus
+
+:domesticGeographicFocus rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:label "domestic geographic focus"@en-us ;
+                         
+                         rdfs:range :GeographicRegion ;
+                         
+                         rdfs:subPropertyOf :geographicFocus .
+
+
+
+###  http://vivoweb.org/ontology/core#domesticGeographicFocusOf
+
+:domesticGeographicFocusOf rdf:type owl:ObjectProperty ;
+                           
+                           rdfs:label "domestic geographic focus of"@en-us ;
+                           
+                           rdfs:domain :GeographicRegion ;
+                           
+                           owl:inverseOf :domesticGeographicFocus ;
+                           
+                           rdfs:subPropertyOf :geographicFocusOf .
+
+
+
+###  http://vivoweb.org/ontology/core#editor
+
+:editor rdf:type owl:ObjectProperty ;
+        
+        rdfs:label "editor"@en-us ;
+        
+        rdfs:domain bibo:Document ;
+        
+        rdfs:subPropertyOf bibo:editor ;
+        
+        rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#editorOf
+
+:editorOf rdf:type owl:ObjectProperty ;
+          
+          rdfs:label "editor of "@en-us ;
+          
+          rdfs:range bibo:Document ;
+          
+          owl:inverseOf :editor ;
+          
+          rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#editorRoleOf
+
+:editorRoleOf rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "editor role of"@en-us ;
+              
+              rdfs:domain :EditorRole ;
+              
+              rdfs:subPropertyOf :roleOf ;
+              
+              rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#educationalTraining
+
+:educationalTraining rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:label "education and training"@en-us ;
+                     
+                     rdfs:range :EducationalTraining ;
+                     
+                     owl:inverseOf :educationalTrainingOf ;
+                     
+                     rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#educationalTrainingOf
+
+:educationalTrainingOf rdf:type owl:ObjectProperty ;
+                       
+                       rdfs:label "education or training of"@en-us ;
+                       
+                       rdfs:domain :EducationalTraining ;
+                       
+                       rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#eligibleFor
+
+:eligibleFor rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "eligible for"@en-us ;
+             
+             rdfs:range :Credential .
+
+
+
+###  http://vivoweb.org/ontology/core#end
+
+:end rdf:type owl:ObjectProperty ;
+     
+     rdfs:label "end"@en-us ;
+     
+     rdfs:domain :DateTimeInterval ;
+     
+     rdfs:range :DateTimeValue ;
+     
+     rdfs:subPropertyOf :dateTimeValue .
+
+
+
+###  http://vivoweb.org/ontology/core#equipmentFor
+
+:equipmentFor rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "equipment for"@en-us ;
+              
+              rdfs:domain :Equipment ;
+              
+              rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#equipmentInFacility
+
+:equipmentInFacility rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:label "in facility"@en-us ;
+                     
+                     rdfs:domain :Equipment ;
+                     
+                     rdfs:range :Facility .
+
+
+
+###  http://vivoweb.org/ontology/core#eventWithin
+
+:eventWithin rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "event within"@en-us ;
+             
+             rdfs:range event:Event ;
+             
+             rdfs:domain event:Event ;
+             
+             owl:inverseOf :includesEvent ;
+             
+             rdfs:subPropertyOf :partOf .
+
+
+
+###  http://vivoweb.org/ontology/core#expirationDate
+
+:expirationDate rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "expiration date"@en-us ;
+                
+                rdfs:subPropertyOf :dateTimeValue .
+
+
+
+###  http://vivoweb.org/ontology/core#facilityFor
+
+:facilityFor rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "facility for"@en-us ;
+             
+             rdfs:domain :Facility ;
+             
+             owl:inverseOf :hasFacility .
+
+
+
+###  http://vivoweb.org/ontology/core#featuredIn
+
+:featuredIn rdf:type owl:ObjectProperty ;
+            
+            rdfs:label "featured in"@en-us ;
+            
+            vitro:descriptionAnnot "This is done through a restriction on the foaf:Person class."^^xsd:string ;
+            
+            rdfs:range :InformationResource ;
+            
+            owl:inverseOf :features .
+
+
+
+###  http://vivoweb.org/ontology/core#features
+
+:features rdf:type owl:ObjectProperty ;
+          
+          rdfs:label "features"@en-us ;
+          
+          vitro:descriptionAnnot "This is done through a restriction on the foaf:Person class."^^xsd:string ;
+          
+          rdfs:domain :InformationResource .
+
+
+
+###  http://vivoweb.org/ontology/core#fundingVehicleFor
+
+:fundingVehicleFor rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "provides funding for"@en-us ;
+                   
+                   rdfs:domain :Grant ;
+                   
+                   owl:inverseOf :hasFundingVehicle ;
+                   
+                   rdfs:subPropertyOf :supports .
+
+
+
+###  http://vivoweb.org/ontology/core#geographicFocus
+
+:geographicFocus rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "geographic focus"@en-us ;
+                 
+                 rdfs:range :GeographicRegion .
+
+
+
+###  http://vivoweb.org/ontology/core#geographicFocusOf
+
+:geographicFocusOf rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "geographic focus of"@en-us ;
+                   
+                   rdfs:domain :GeographicRegion ;
+                   
+                   owl:inverseOf :geographicFocus .
+
+
+
+###  http://vivoweb.org/ontology/core#geographicLocationOf
+
+:geographicLocationOf rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:label "geographic location of"@en-us ;
+                      
+                      vitro:descriptionAnnot "Currently being used by a restriction on organization."^^xsd:string ;
+                      
+                      rdfs:domain :GeographicLocation .
+
+
+
+###  http://vivoweb.org/ontology/core#geographicallyContains
+
+:geographicallyContains rdf:type owl:ObjectProperty ,
+                                 owl:TransitiveProperty ;
+                        
+                        rdfs:label "geographically contains"@en-us ;
+                        
+                        rdfs:range :GeographicLocation ;
+                        
+                        rdfs:domain :GeographicLocation ;
+                        
+                        owl:inverseOf :geographicallyWithin .
+
+
+
+###  http://vivoweb.org/ontology/core#geographicallyWithin
+
+:geographicallyWithin rdf:type owl:ObjectProperty ,
+                               owl:TransitiveProperty ;
+                      
+                      rdfs:label "geographically within"@en-us ;
+                      
+                      rdfs:domain :GeographicLocation ;
+                      
+                      rdfs:range :GeographicLocation .
+
+
+
+###  http://vivoweb.org/ontology/core#governingAuthorityFor
+
+:governingAuthorityFor rdf:type owl:ObjectProperty ;
+                       
+                       rdfs:label "governing authority for"@en-us ;
+                       
+                       owl:inverseOf :hasGoverningAuthority ;
+                       
+                       rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#grantAwardedBy
+
+:grantAwardedBy rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "grant awarded by"@en-us ;
+                
+                rdfs:domain :Grant ;
+                
+                rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#grantSubcontractedThrough
+
+:grantSubcontractedThrough rdf:type owl:ObjectProperty ;
+                           
+                           rdfs:label "subcontracted through"@en-us ;
+                           
+                           rdfs:domain :Grant ;
+                           
+                           rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#hasAssociatedConcept
+
+:hasAssociatedConcept rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:label "associated concept"@en-us ;
+                      
+                      owl:inverseOf :conceptAssociatedWith .
+
+
+
+###  http://vivoweb.org/ontology/core#hasAttendeeRole
+
+:hasAttendeeRole rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "attended"@en-us ;
+                 
+                 rdfs:range :AttendeeRole ;
+                 
+                 owl:inverseOf :attendeeRoleOf ;
+                 
+                 rdfs:subPropertyOf :hasRole .
+
+
+
+###  http://vivoweb.org/ontology/core#hasClinicalRole
+
+:hasClinicalRole rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "clinical activities"@en-us ;
+                 
+                 rdfs:range :ClinicalRole ;
+                 
+                 owl:inverseOf :clinicalRoleOf ;
+                 
+                 rdfs:subPropertyOf :hasRole ;
+                 
+                 rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#hasCo-PrincipalInvestigatorRole
+
+:hasCo-PrincipalInvestigatorRole rdf:type owl:ObjectProperty ;
+                                 
+                                 rdfs:label "co-principal investigator on"@en-us ;
+                                 
+                                 rdfs:range :CoPrincipalInvestigatorRole ;
+                                 
+                                 rdfs:subPropertyOf :hasInvestigatorRole ;
+                                 
+                                 rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#hasCollaborator
+
+:hasCollaborator rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "collaborator"@en-us ;
+                 
+                 rdfs:domain foaf:Agent ;
+                 
+                 rdfs:range foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#hasCredential
+
+:hasCredential rdf:type owl:ObjectProperty ;
+               
+               rdfs:label "credentials"@en-us ;
+               
+               rdfs:range :IssuedCredential ;
+               
+               owl:inverseOf :credentialOf ;
+               
+               rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#hasCurrentMember
+
+:hasCurrentMember rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "has current member"@en-us ;
+                  
+                  vitro:descriptionAnnot "Since we have defined geopolitical.owl.hasMember to be a subproperty of core:hasMember, we should not make changes to this property that would change the definition of geopolitical.owl.hasMember in ways that may make it inconsistent with its usage in other ontologies."^^xsd:string ;
+                  
+                  owl:inverseOf :currentMemberOf .
+
+
+
+###  http://vivoweb.org/ontology/core#hasEditorRole
+
+:hasEditorRole rdf:type owl:ObjectProperty ;
+               
+               rdfs:label "collection or series editor for"@en-us ;
+               
+               rdfs:range :EditorRole ;
+               
+               owl:inverseOf :editorRoleOf ;
+               
+               rdfs:subPropertyOf :hasRole ;
+               
+               rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#hasEquipment
+
+:hasEquipment rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "has equipment"@en-us ;
+              
+              rdfs:range :Equipment ;
+              
+              owl:inverseOf :equipmentFor ;
+              
+              rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#hasFacility
+
+:hasFacility rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "has facility"@en-us ;
+             
+             rdfs:range :Facility .
+
+
+
+###  http://vivoweb.org/ontology/core#hasFundingVehicle
+
+:hasFundingVehicle rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "funding provided via"@en-us ;
+                   
+                   rdfs:range :Grant ;
+                   
+                   rdfs:subPropertyOf :supportedBy .
+
+
+
+###  http://vivoweb.org/ontology/core#hasGeographicLocation
+
+:hasGeographicLocation rdf:type owl:ObjectProperty ;
+                       
+                       rdfs:label "has geographic location"@en-us ;
+                       
+                       vitro:descriptionAnnot "Currently being used by a restriction on organization."^^xsd:string ;
+                       
+                       rdfs:range :GeographicLocation ;
+                       
+                       owl:inverseOf :geographicLocationOf .
+
+
+
+###  http://vivoweb.org/ontology/core#hasGoverningAuthority
+
+:hasGoverningAuthority rdf:type owl:ObjectProperty ;
+                       
+                       rdfs:label "governing authority"@en-us ;
+                       
+                       rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#hasInvestigatorRole
+
+:hasInvestigatorRole rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:label "investigator on"@en-us ;
+                     
+                     rdfs:range :InvestigatorRole ;
+                     
+                     rdfs:subPropertyOf :hasResearcherRole ;
+                     
+                     owl:inverseOf :investigatorRoleOf ;
+                     
+                     rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#hasLeaderRole
+
+:hasLeaderRole rdf:type owl:ObjectProperty ;
+               
+               rdfs:label "head of"@en-us ;
+               
+               rdfs:range :LeaderRole ;
+               
+               rdfs:subPropertyOf :hasRole ;
+               
+               rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#hasMemberRole
+
+:hasMemberRole rdf:type owl:ObjectProperty ;
+               
+               rdfs:label "member of"@en-us ;
+               
+               rdfs:range :MemberRole ;
+               
+               rdfs:subPropertyOf :hasRole ;
+               
+               owl:inverseOf :memberRoleOf ;
+               
+               rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#hasOrganizerRole
+
+:hasOrganizerRole rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "organizer of"@en-us ;
+                  
+                  rdfs:range :OrganizerRole ;
+                  
+                  rdfs:subPropertyOf :hasRole ;
+                  
+                  rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#hasOutreachProviderRole
+
+:hasOutreachProviderRole rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:label "outreach and community service"@en-us ;
+                         
+                         rdfs:range :OutreachProviderRole ;
+                         
+                         rdfs:subPropertyOf :hasRole ;
+                         
+                         owl:inverseOf :outreachProviderRoleOf ;
+                         
+                         rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#hasPart
+
+:hasPart rdf:type owl:ObjectProperty ,
+                  owl:TransitiveProperty ;
+         
+         rdfs:label "has part"@en-us ;
+         
+         owl:inverseOf :partOf .
+
+
+
+###  http://vivoweb.org/ontology/core#hasPredecessorOrganization
+
+:hasPredecessorOrganization rdf:type owl:ObjectProperty ;
+                            
+                            rdfs:label "predecessor organization"@en-us ;
+                            
+                            owl:inverseOf :hasSuccessorOrganization ;
+                            
+                            rdfs:domain foaf:Organization ;
+                            
+                            rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#hasPrerequisite
+
+:hasPrerequisite rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "has prerequisite"@en-us ;
+                 
+                 rdfs:range :Course ;
+                 
+                 rdfs:domain :Course .
+
+
+
+###  http://vivoweb.org/ontology/core#hasPresenterRole
+
+:hasPresenterRole rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "presentations"@en-us ;
+                  
+                  rdfs:range :PresenterRole ;
+                  
+                  rdfs:subPropertyOf :hasRole ;
+                  
+                  rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#hasPrincipalInvestigatorRole
+
+:hasPrincipalInvestigatorRole rdf:type owl:ObjectProperty ;
+                              
+                              rdfs:label "principal investigator on"@en-us ;
+                              
+                              rdfs:range :PrincipalInvestigatorRole ;
+                              
+                              rdfs:subPropertyOf :hasInvestigatorRole ;
+                              
+                              rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#hasProceedings
+
+:hasProceedings rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "proceedings"@en-us ;
+                
+                vitro:descriptionAnnot "A possible working example: The conference proceeding of the SPIE was generated from the conference - International Society for Optical Engineering."^^xsd:string ;
+                
+                rdfs:domain bibo:Conference ;
+                
+                rdfs:range bibo:Proceedings .
+
+
+
+###  http://vivoweb.org/ontology/core#hasPublicationVenue
+
+:hasPublicationVenue rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:label "published in"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#hasResearchArea
+
+:hasResearchArea rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "research areas"@en-us ;
+                 
+                 rdfs:subPropertyOf :hasAssociatedConcept ;
+                 
+                 owl:inverseOf :researchAreaOf .
+
+
+
+###  http://vivoweb.org/ontology/core#hasResearcherRole
+
+:hasResearcherRole rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "research activities"@en-us ;
+                   
+                   rdfs:range :ResearcherRole ;
+                   
+                   rdfs:subPropertyOf :hasRole ;
+                   
+                   owl:inverseOf :researcherRoleOf ;
+                   
+                   rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#hasReviewerRole
+
+:hasReviewerRole rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "reviewer of"@en-us ;
+                 
+                 rdfs:range :ReviewerRole ;
+                 
+                 rdfs:subPropertyOf :hasRole ;
+                 
+                 rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#hasRole
+
+:hasRole rdf:type owl:ObjectProperty ;
+         
+         rdfs:label "has role"@en-us ;
+         
+         rdfs:range :Role ;
+         
+         rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#hasRoom
+
+:hasRoom rdf:type owl:ObjectProperty ;
+         
+         rdfs:label "rooms"@en-us ;
+         
+         rdfs:domain :Building ;
+         
+         rdfs:range :Room ;
+         
+         rdfs:subPropertyOf :hasPart ;
+         
+         owl:inverseOf :roomWithinBuilding .
+
+
+
+###  http://vivoweb.org/ontology/core#hasServiceProviderRole
+
+:hasServiceProviderRole rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:label "service to the profession"@en-us ;
+                        
+                        rdfs:range :ServiceProviderRole ;
+                        
+                        rdfs:subPropertyOf :hasRole ;
+                        
+                        rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#hasSubGrant
+
+:hasSubGrant rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "has sub grant"@en-us ;
+             
+             rdfs:range :Grant ;
+             
+             rdfs:domain :Grant ;
+             
+             rdfs:subPropertyOf :hasPart ;
+             
+             owl:inverseOf :subGrantOf .
+
+
+
+###  http://vivoweb.org/ontology/core#hasSubOrganization
+
+:hasSubOrganization rdf:type owl:ObjectProperty ,
+                             owl:TransitiveProperty ;
+                    
+                    rdfs:label "has sub-organization"@en-us ;
+                    
+                    rdfs:subPropertyOf :hasPart ;
+                    
+                    owl:inverseOf :subOrganizationWithin ;
+                    
+                    rdfs:domain foaf:Organization ;
+                    
+                    rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#hasSubjectArea
+
+:hasSubjectArea rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "has subject area"@en-us ;
+                
+                rdfs:subPropertyOf :hasAssociatedConcept .
+
+
+
+###  http://vivoweb.org/ontology/core#hasSuccessorOrganization
+
+:hasSuccessorOrganization rdf:type owl:ObjectProperty ;
+                          
+                          rdfs:label "successor organization"@en-us ;
+                          
+                          rdfs:domain foaf:Organization ;
+                          
+                          rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#hasTeacherRole
+
+:hasTeacherRole rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "teaching activities"@en-us ;
+                
+                rdfs:range :TeacherRole ;
+                
+                rdfs:subPropertyOf :hasRole ;
+                
+                owl:inverseOf :teacherRoleOf ;
+                
+                rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#hasTranslation
+
+:hasTranslation rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "has translation"@en-us ;
+                
+                vitro:descriptionAnnot "Examples shows a book has French language version. Public description source: http://bibotools.googlecode.com/svn/bibo-ontology/trunk/doc/index.html ."^^xsd:string ;
+                
+                owl:inverseOf bibo:translationOf .
+
+
+
+###  http://vivoweb.org/ontology/core#inEventSeries
+
+:inEventSeries rdf:type owl:ObjectProperty ;
+               
+               rdfs:label "in event series"@en-us ;
+               
+               rdfs:domain event:Event ;
+               
+               rdfs:range :EventSeries ;
+               
+               rdfs:subPropertyOf :partOf ;
+               
+               owl:inverseOf :seriesForEvent .
+
+
+
+###  http://vivoweb.org/ontology/core#includesEvent
+
+:includesEvent rdf:type owl:ObjectProperty ;
+               
+               rdfs:label "includes event"@en-us ;
+               
+               rdfs:domain event:Event ;
+               
+               rdfs:range event:Event ;
+               
+               rdfs:subPropertyOf :hasPart .
+
+
+
+###  http://vivoweb.org/ontology/core#informationProduct
+
+:informationProduct rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:label "produces"@en-us ;
+                    
+                    rdfs:subPropertyOf event:product ;
+                    
+                    rdfs:range :InformationResource ;
+                    
+                    owl:inverseOf :informationProductOf .
+
+
+
+###  http://vivoweb.org/ontology/core#informationProductOf
+
+:informationProductOf rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:label "product of"@en-us ;
+                      
+                      rdfs:subPropertyOf event:produced_in ;
+                      
+                      rdfs:domain :InformationResource .
+
+
+
+###  http://vivoweb.org/ontology/core#informationResourceInAuthorship
+
+:informationResourceInAuthorship rdf:type owl:ObjectProperty ;
+                                 
+                                 rdfs:label "authors"@en-us ;
+                                 
+                                 rdfs:range :Authorship ;
+                                 
+                                 rdfs:domain :InformationResource ;
+                                 
+                                 owl:inverseOf :linkedInformationResource .
+
+
+
+###  http://vivoweb.org/ontology/core#informationResourceSupportedBy
+
+:informationResourceSupportedBy rdf:type owl:ObjectProperty ;
+                                
+                                rdfs:label "supported by"@en-us ;
+                                
+                                vitro:descriptionAnnot "an information resource (typically a publication) supported by (typically via funding) an agreement (such as a grant)"^^xsd:string ;
+                                
+                                rdfs:domain :InformationResource ;
+                                
+                                rdfs:subPropertyOf :supportedBy .
+
+
+
+###  http://vivoweb.org/ontology/core#internationalGeographicFocus
+
+:internationalGeographicFocus rdf:type owl:ObjectProperty ;
+                              
+                              rdfs:label "international geographic focus"@en-us ;
+                              
+                              rdfs:range :GeographicRegion ;
+                              
+                              rdfs:subPropertyOf :geographicFocus .
+
+
+
+###  http://vivoweb.org/ontology/core#internationalGeographicFocusOf
+
+:internationalGeographicFocusOf rdf:type owl:ObjectProperty ;
+                                
+                                rdfs:label "international geographic focus of"@en-us ;
+                                
+                                rdfs:domain :GeographicRegion ;
+                                
+                                rdfs:subPropertyOf :geographicFocusOf ;
+                                
+                                owl:inverseOf :internationalGeographicFocus .
+
+
+
+###  http://vivoweb.org/ontology/core#investigatorRoleOf
+
+:investigatorRoleOf rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:label "investigator role of"@en-us ;
+                    
+                    rdfs:domain :InvestigatorRole ;
+                    
+                    rdfs:subPropertyOf :researcherRoleOf ;
+                    
+                    rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#issuanceOfCredential
+
+:issuanceOfCredential rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:label "issuance of"@en-us ;
+                      
+                      rdfs:range :Credential ;
+                      
+                      rdfs:domain :IssuedCredential ;
+                      
+                      owl:inverseOf :issuedCredential .
+
+
+
+###  http://vivoweb.org/ontology/core#issuedCredential
+
+:issuedCredential rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "issued"@en-us ;
+                  
+                  rdfs:domain :Credential ;
+                  
+                  rdfs:range :IssuedCredential .
+
+
+
+###  http://vivoweb.org/ontology/core#leaderRoleOf
+
+:leaderRoleOf rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "leadership role of"@en-us ;
+              
+              rdfs:domain :LeaderRole ;
+              
+              owl:inverseOf :hasLeaderRole ;
+              
+              rdfs:subPropertyOf :roleOf ;
+              
+              rdfs:range foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#linkedAuthor
+
+:linkedAuthor rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "linked author"@en-us ;
+              
+              rdfs:domain :Authorship ;
+              
+              owl:inverseOf :authorInAuthorship .
+
+
+
+###  http://vivoweb.org/ontology/core#linkedInformationResource
+
+:linkedInformationResource rdf:type owl:ObjectProperty ;
+                           
+                           rdfs:label "linked information resource"@en-us ;
+                           
+                           rdfs:domain :Authorship ;
+                           
+                           rdfs:range :InformationResource .
+
+
+
+###  http://vivoweb.org/ontology/core#locationOfEquipment
+
+:locationOfEquipment rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:label "location of equipment"@en-us ;
+                     
+                     rdfs:range :Equipment ;
+                     
+                     rdfs:domain :Facility ;
+                     
+                     owl:inverseOf :equipmentInFacility .
+
+
+
+###  http://vivoweb.org/ontology/core#mailingAddress
+
+:mailingAddress rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "mailing address"@en-us ;
+                
+                vitro:descriptionAnnot "This is done with a restriction on agent."^^xsd:string ;
+                
+                rdfs:range :Address .
+
+
+
+###  http://vivoweb.org/ontology/core#mailingAddressFor
+
+:mailingAddressFor rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "mailing address for"@en-us ;
+                   
+                   vitro:descriptionAnnot "This is done with a restriction on agent."^^xsd:string ;
+                   
+                   rdfs:domain :Address ;
+                   
+                   owl:inverseOf :mailingAddress .
+
+
+
+###  http://vivoweb.org/ontology/core#memberRoleOf
+
+:memberRoleOf rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "member role of"@en-us ;
+              
+              rdfs:domain :MemberRole ;
+              
+              rdfs:subPropertyOf :roleOf ;
+              
+              rdfs:range foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#offeredBy
+
+:offeredBy rdf:type owl:ObjectProperty ;
+           
+           rdfs:label "offered by"@en-us ;
+           
+           owl:inverseOf :offers .
+
+
+
+###  http://vivoweb.org/ontology/core#offers
+
+:offers rdf:type owl:ObjectProperty ;
+        
+        rdfs:label "offers"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#offersCourse
+
+:offersCourse rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "offers course"@en-us ;
+              
+              rdfs:subPropertyOf event:isAgentIn ;
+              
+              rdfs:range :Course ;
+              
+              rdfs:subPropertyOf :offers ;
+              
+              rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#offersDegree
+
+:offersDegree rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "offers degree"@en-us ;
+              
+              vitro:descriptionAnnot "This is done through a restriction on academic degree to allow the values from to be foaf:organization to be used as the range."^^xsd:string ;
+              
+              rdfs:range :AcademicDegree ;
+              
+              rdfs:subPropertyOf :offers .
+
+
+
+###  http://vivoweb.org/ontology/core#organizationForPosition
+
+:organizationForPosition rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:label "people"@en-us ;
+                         
+                         rdfs:range :Position ;
+                         
+                         owl:inverseOf :positionInOrganization ;
+                         
+                         rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#organizationForTraining
+
+:organizationForTraining rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:label "organization for training"@en-us ;
+                         
+                         rdfs:range :EducationalTraining ;
+                         
+                         rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#organizerRoleOf
+
+:organizerRoleOf rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "organizer role of"@en-us ;
+                 
+                 rdfs:domain :OrganizerRole ;
+                 
+                 owl:inverseOf :hasOrganizerRole ;
+                 
+                 rdfs:subPropertyOf :roleOf ;
+                 
+                 rdfs:range foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#outcome
+
+:outcome rdf:type owl:ObjectProperty ;
+         
+         rdfs:label "outcome"@en-us ;
+         
+         vitro:descriptionAnnot "We would like the domain of core:outcome to be the union of Event and Process; and that same union to be the range for core:outcomeOf, but we cannot currently express this with the editor."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#outcomeOf
+
+:outcomeOf rdf:type owl:ObjectProperty ;
+           
+           rdfs:label "outcome of"@en-us ;
+           
+           vitro:descriptionAnnot "We would like the domain of core:outcome to be the union of Event and Process; and that same union to be the range for core:outcomeOf, but we cannot currently express this with the editor."^^xsd:string ;
+           
+           owl:inverseOf :outcome .
+
+
+
+###  http://vivoweb.org/ontology/core#outreachProviderRoleOf
+
+:outreachProviderRoleOf rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:label "outreach provider role of"@en-us ;
+                        
+                        rdfs:domain :OutreachProviderRole ;
+                        
+                        rdfs:subPropertyOf :roleOf ;
+                        
+                        rdfs:range foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#partOf
+
+:partOf rdf:type owl:ObjectProperty ,
+                 owl:TransitiveProperty ;
+        
+        rdfs:label "part of"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#personInPosition
+
+:personInPosition rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "positions"@en-us ;
+                  
+                  rdfs:range :Position ;
+                  
+                  owl:inverseOf :positionForPerson ;
+                  
+                  rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#positionForPerson
+
+:positionForPerson rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "position for person"@en-us ;
+                   
+                   rdfs:domain :Position ;
+                   
+                   rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#positionInOrganization
+
+:positionInOrganization rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:label "position in organization"@en-us ;
+                        
+                        rdfs:domain :Position ;
+                        
+                        rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#prerequisiteFor
+
+:prerequisiteFor rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "prerequisite for"@en-us ;
+                 
+                 rdfs:domain :Course ;
+                 
+                 rdfs:range :Course ;
+                 
+                 owl:inverseOf :hasPrerequisite .
+
+
+
+###  http://vivoweb.org/ontology/core#presenterRoleOf
+
+:presenterRoleOf rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "presenter role of"@en-us ;
+                 
+                 rdfs:domain :PresenterRole ;
+                 
+                 owl:inverseOf :hasPresenterRole ;
+                 
+                 rdfs:subPropertyOf :roleOf ;
+                 
+                 rdfs:range foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#principalInvestigatorRoleOf
+
+:principalInvestigatorRoleOf rdf:type owl:ObjectProperty ;
+                             
+                             rdfs:label "principal investigator role of"@en-us ;
+                             
+                             rdfs:domain :PrincipalInvestigatorRole ;
+                             
+                             owl:inverseOf :hasPrincipalInvestigatorRole ;
+                             
+                             rdfs:subPropertyOf :investigatorRoleOf ;
+                             
+                             rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#proceedingsOf
+
+:proceedingsOf rdf:type owl:ObjectProperty ;
+               
+               rdfs:label "proceedings of"@en-us ;
+               
+               vitro:descriptionAnnot "A possible working example: The conference proceeding of the SPIE was generated from the conference - International Society for Optical Engineering."^^xsd:string ;
+               
+               rdfs:range bibo:Conference ;
+               
+               rdfs:domain bibo:Proceedings ;
+               
+               owl:inverseOf :hasProceedings .
+
+
+
+###  http://vivoweb.org/ontology/core#providesFundingThrough
+
+:providesFundingThrough rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:label "provides funding through"@en-us ;
+                        
+                        vitro:descriptionAnnot "For example, National Science Foundation providesFundingThrough Graduate Research Fellowship Program; National Institutes of Health providesFundingThrough National Center for Research Resources. "^^xsd:string ;
+                        
+                        rdfs:range :FundingOrganization ;
+                        
+                        rdfs:domain :FundingOrganization .
+
+
+
+###  http://vivoweb.org/ontology/core#providesService
+
+:providesService rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "provides service"@en-us ;
+                 
+                 rdfs:range :Service ;
+                 
+                 rdfs:subPropertyOf :offers ;
+                 
+                 owl:inverseOf :serviceProvidedBy .
+
+
+
+###  http://vivoweb.org/ontology/core#publicationVenueFor
+
+:publicationVenueFor rdf:type owl:ObjectProperty ;
+                     
+                     rdfs:label "publication venue for"@en-us ;
+                     
+                     owl:inverseOf :hasPublicationVenue .
+
+
+
+###  http://vivoweb.org/ontology/core#publisher
+
+:publisher rdf:type owl:ObjectProperty ;
+           
+           rdfs:label "publisher"@en-us ;
+           
+           vitro:descriptionAnnot "Public Definition source (http://www.answers.com/topic/publisher)."^^xsd:string ;
+           
+           rdfs:subPropertyOf dcterms:publisher ;
+           
+           rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#publisherOf
+
+:publisherOf rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "publisher of"@en-us ;
+             
+             vitro:descriptionAnnot "Public Definition source (http://www.answers.com/topic/publisher)."^^xsd:string ;
+             
+             owl:inverseOf :publisher ;
+             
+             rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#realizedRole
+
+:realizedRole rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "participant"@en-us ;
+              
+              rdfs:range :Role ;
+              
+              rdfs:subPropertyOf :relatedRole ;
+              
+              owl:inverseOf :roleRealizedIn .
+
+
+
+###  http://vivoweb.org/ontology/core#receipt
+
+:receipt rdf:type owl:ObjectProperty ;
+         
+         rdfs:label "receipts"@en-us ;
+         
+         rdfs:domain :Award ;
+         
+         rdfs:range :AwardReceipt .
+
+
+
+###  http://vivoweb.org/ontology/core#receiptOf
+
+:receiptOf rdf:type owl:ObjectProperty ;
+           
+           rdfs:label "receipt of"@en-us ;
+           
+           rdfs:range :Award ;
+           
+           rdfs:domain :AwardReceipt ;
+           
+           owl:inverseOf :receipt .
+
+
+
+###  http://vivoweb.org/ontology/core#relatedRole
+
+:relatedRole rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "related role"@en-us ;
+             
+             rdfs:range :Role ;
+             
+             owl:inverseOf :roleIn .
+
+
+
+###  http://vivoweb.org/ontology/core#reproduces
+
+:reproduces rdf:type owl:ObjectProperty ;
+            
+            rdfs:label "reproduces"@en-us ;
+            
+            rdfs:domain bibo:Document ;
+            
+            rdfs:range bibo:Document ;
+            
+            owl:inverseOf bibo:reproducedIn ;
+            
+            rdfs:subPropertyOf :hasPart .
+
+
+
+###  http://vivoweb.org/ontology/core#researchAreaOf
+
+:researchAreaOf rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "research area of"@en-us ;
+                
+                rdfs:subPropertyOf :conceptAssociatedWith .
+
+
+
+###  http://vivoweb.org/ontology/core#researcherRoleOf
+
+:researcherRoleOf rdf:type owl:ObjectProperty ;
+                  
+                  rdfs:label "researcher role of"@en-us ;
+                  
+                  rdfs:domain :ResearcherRole ;
+                  
+                  rdfs:subPropertyOf :roleOf ;
+                  
+                  rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#reviewedIn
+
+:reviewedIn rdf:type owl:ObjectProperty ;
+            
+            rdfs:label "reviewed in"@en-us ;
+            
+            vitro:descriptionAnnot "The bibo:reviewOf public description was found here: http://bibotools.googlecode.com/svn/bibo-ontology/trunk/doc/index.html .  As of 26 May 2010, bibo:reviewOf is used with the class Review, but core:reviewIn doesn't seem to be being used."^^xsd:string ;
+            
+            owl:inverseOf bibo:reviewOf ;
+            
+            rdfs:range :Review .
+
+
+
+###  http://vivoweb.org/ontology/core#reviewerRoleOf
+
+:reviewerRoleOf rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "reviewer role of"@en-us ;
+                
+                rdfs:domain :ReviewerRole ;
+                
+                owl:inverseOf :hasReviewerRole ;
+                
+                rdfs:subPropertyOf :roleOf ;
+                
+                rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#roleContributesTo
+
+:roleContributesTo rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "contributes to"@en-us ;
+                   
+                   rdfs:domain :Role ;
+                   
+                   owl:inverseOf :contributingRole ;
+                   
+                   rdfs:subPropertyOf :roleIn .
+
+
+
+###  http://vivoweb.org/ontology/core#roleIn
+
+:roleIn rdf:type owl:ObjectProperty ;
+        
+        rdfs:label "role in"@en-us ;
+        
+        rdfs:domain :Role .
+
+
+
+###  http://vivoweb.org/ontology/core#roleOf
+
+:roleOf rdf:type owl:ObjectProperty ;
+        
+        rdfs:label "role of"@en-us ;
+        
+        rdfs:domain :Role ;
+        
+        owl:inverseOf :hasRole ;
+        
+        rdfs:range foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#roleRealizedIn
+
+:roleRealizedIn rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "role in"@en-us ;
+                
+                rdfs:domain :Role ;
+                
+                rdfs:subPropertyOf :roleIn .
+
+
+
+###  http://vivoweb.org/ontology/core#roomWithinBuilding
+
+:roomWithinBuilding rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:label "room within building"@en-us ;
+                    
+                    rdfs:range :Building ;
+                    
+                    rdfs:domain :Room ;
+                    
+                    rdfs:subPropertyOf :partOf .
+
+
+
+###  http://vivoweb.org/ontology/core#seriesForEvent
+
+:seriesForEvent rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "seriesForEvent"@en-us ;
+                
+                rdfs:range event:Event ;
+                
+                rdfs:domain :EventSeries ;
+                
+                rdfs:subPropertyOf :hasPart .
+
+
+
+###  http://vivoweb.org/ontology/core#serviceProvidedBy
+
+:serviceProvidedBy rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "provided by"@en-us ;
+                   
+                   rdfs:domain :Service ;
+                   
+                   rdfs:subPropertyOf :offeredBy .
+
+
+
+###  http://vivoweb.org/ontology/core#serviceProviderRoleOf
+
+:serviceProviderRoleOf rdf:type owl:ObjectProperty ;
+                       
+                       rdfs:label "service provider role of"@en-us ;
+                       
+                       rdfs:domain :ServiceProviderRole ;
+                       
+                       owl:inverseOf :hasServiceProviderRole ;
+                       
+                       rdfs:subPropertyOf :roleOf ;
+                       
+                       rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#sponsoredBy
+
+:sponsoredBy rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "award sponsored by"@en-us ;
+             
+             rdfs:domain :Award ;
+             
+             rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#sponsors
+
+:sponsors rdf:type owl:ObjectProperty ;
+          
+          rdfs:label "sponsors award or honor"@en-us ;
+          
+          rdfs:range :Award ;
+          
+          owl:inverseOf :sponsoredBy ;
+          
+          rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#start
+
+:start rdf:type owl:ObjectProperty ;
+       
+       rdfs:label "start"@en-us ;
+       
+       rdfs:domain :DateTimeInterval ;
+       
+       rdfs:range :DateTimeValue ;
+       
+       rdfs:subPropertyOf :dateTimeValue .
+
+
+
+###  http://vivoweb.org/ontology/core#subGrantOf
+
+:subGrantOf rdf:type owl:ObjectProperty ;
+            
+            rdfs:label "sub grant of"@en-us ;
+            
+            rdfs:range :Grant ;
+            
+            rdfs:domain :Grant ;
+            
+            rdfs:subPropertyOf :partOf .
+
+
+
+###  http://vivoweb.org/ontology/core#subOrganizationWithin
+
+:subOrganizationWithin rdf:type owl:ObjectProperty ,
+                                owl:TransitiveProperty ;
+                       
+                       rdfs:label "organization within"@en-us ;
+                       
+                       rdfs:subPropertyOf :partOf ;
+                       
+                       rdfs:range foaf:Organization ;
+                       
+                       rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#subcontractsGrant
+
+:subcontractsGrant rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:label "subcontracts grant"@en-us ;
+                   
+                   rdfs:range :Grant ;
+                   
+                   owl:inverseOf :grantSubcontractedThrough ;
+                   
+                   rdfs:domain foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#subjectAreaFor
+
+:subjectAreaFor rdf:type owl:ObjectProperty ;
+                
+                rdfs:label "subject area for"@en-us ;
+                
+                rdfs:subPropertyOf :conceptAssociatedWith ;
+                
+                owl:inverseOf :hasSubjectArea .
+
+
+
+###  http://vivoweb.org/ontology/core#supportedBy
+
+:supportedBy rdf:type owl:ObjectProperty ;
+             
+             rdfs:label "supported by"@en-us ;
+             
+             vitro:descriptionAnnot "general relationship of support"^^xsd:string ;
+             
+             owl:inverseOf :supports .
+
+
+
+###  http://vivoweb.org/ontology/core#supportedInformationResource
+
+:supportedInformationResource rdf:type owl:ObjectProperty ;
+                              
+                              rdfs:label "supported publications"@en-us ;
+                              
+                              vitro:descriptionAnnot "an information resource (typically a publication) supported by (typically via funding) an agreement (such as a grant)"^^xsd:string ;
+                              
+                              rdfs:range :InformationResource ;
+                              
+                              owl:inverseOf :informationResourceSupportedBy ;
+                              
+                              rdfs:subPropertyOf :supports .
+
+
+
+###  http://vivoweb.org/ontology/core#supports
+
+:supports rdf:type owl:ObjectProperty ;
+          
+          rdfs:label "supports"@en-us ;
+          
+          vitro:descriptionAnnot "general relationship of support"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#teacherRoleOf
+
+:teacherRoleOf rdf:type owl:ObjectProperty ;
+               
+               rdfs:label "teacher role of"@en-us ;
+               
+               rdfs:domain :TeacherRole ;
+               
+               rdfs:subPropertyOf :roleOf ;
+               
+               rdfs:range foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#trainingAtOrganization
+
+:trainingAtOrganization rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:label "educational organization"@en-us ;
+                        
+                        rdfs:domain :EducationalTraining ;
+                        
+                        owl:inverseOf :organizationForTraining ;
+                        
+                        rdfs:range foaf:Organization .
+
+
+
+###  http://vivoweb.org/ontology/core#translatorOf
+
+:translatorOf rdf:type owl:ObjectProperty ;
+              
+              rdfs:label "translator of"@en-us ;
+              
+              owl:inverseOf bibo:translator ;
+              
+              rdfs:range :InformationResource ;
+              
+              rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#validIn
+
+:validIn rdf:type owl:ObjectProperty ;
+         
+         rdfs:label "valid in"@en-us ;
+         
+         rdfs:range :GeographicLocation .
+
+
+
+###  http://vivoweb.org/ontology/core#webpage
+
+:webpage rdf:type owl:ObjectProperty ;
+         
+         rdfs:label "webpage"@en-us ;
+         
+         rdfs:range :URLLink .
+
+
+
+###  http://vivoweb.org/ontology/core#webpageOf
+
+:webpageOf rdf:type owl:ObjectProperty ;
+           
+           rdfs:label "webpageOf"@en-us ;
+           
+           rdfs:domain :URLLink ;
+           
+           owl:inverseOf :webpage .
+
+
+
+###  http://www.w3.org/2000/01/rdf-schema#isDefinedBy
+
+rdfs:isDefinedBy rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:label "is defined by"@en-us .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+
+vann:preferredNamespacePrefix rdf:type owl:DatatypeProperty ;
+                              
+                              rdfs:label "preferredNamespacePrefix"@en-us .
+
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+
+vann:preferredNamespaceUri rdf:type owl:DatatypeProperty ;
+                           
+                           rdfs:label "preferredNamespaceUri"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#abbreviation
+
+:abbreviation rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
+              
+              rdfs:label "abbreviation"@en-us ;
+              
+              vitro:descriptionAnnot "A short form for an longer title or name."^^xsd:string ;
+              
+              vitro:exampleAnnot "B.A."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#address1
+
+:address1 rdf:type owl:DatatypeProperty ;
+          
+          rdfs:label "address line 1"@en-us ;
+          
+          vitro:exampleAnnot "123 Main Street;   ITS department;     P.O. Box 783"^^xsd:string ;
+          
+          rdfs:domain :Address .
+
+
+
+###  http://vivoweb.org/ontology/core#address2
+
+:address2 rdf:type owl:DatatypeProperty ;
+          
+          rdfs:label "address line 2"@en-us ;
+          
+          vitro:exampleAnnot "Apt N26;   Mann Library"^^xsd:string ;
+          
+          rdfs:domain :Address .
+
+
+
+###  http://vivoweb.org/ontology/core#address3
+
+:address3 rdf:type owl:DatatypeProperty ;
+          
+          rdfs:label "address line 3"@en-us ;
+          
+          rdfs:domain :Address .
+
+
+
+###  http://vivoweb.org/ontology/core#addressCity
+
+:addressCity rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty ;
+             
+             rdfs:label "city"@en-us ;
+             
+             vitro:exampleAnnot "Chicago; New York; Bloomington; Gainesville"^^xsd:string ;
+             
+             rdfs:domain :Address .
+
+
+
+###  http://vivoweb.org/ontology/core#addressCountry
+
+:addressCountry rdf:type owl:DatatypeProperty ;
+                
+                rdfs:label "country"@en-us ;
+                
+                vitro:exampleAnnot "Afghanistan; Antigua and Barbuda; Cameroon; Iceland; Jamaica; Nigeria; United States of America"^^xsd:string ;
+                
+                rdfs:domain :Address .
+
+
+
+###  http://vivoweb.org/ontology/core#addressPostalCode
+
+:addressPostalCode rdf:type owl:DatatypeProperty ,
+                            owl:FunctionalProperty ;
+                   
+                   rdfs:label "postal code"@en-us ;
+                   
+                   vitro:exampleAnnot "47405-3907"^^xsd:string ;
+                   
+                   rdfs:domain :Address .
+
+
+
+###  http://vivoweb.org/ontology/core#addressState
+
+:addressState rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
+              
+              rdfs:label "state or province"@en-us ;
+              
+              vitro:exampleAnnot "Indiana; Florida; Minnesota; Michigan; New York; Quebec; Manitoba; Ontario"^^xsd:string ;
+              
+              rdfs:domain :Address .
+
+
+
+###  http://vivoweb.org/ontology/core#authorRank
+
+:authorRank rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
+            
+            rdfs:label "author rank in publication"@en-us ;
+            
+            rdfs:domain :Authorship ;
+            
+            rdfs:subPropertyOf :rank ;
+            
+            rdfs:range xsd:int .
+
+
+
+###  http://vivoweb.org/ontology/core#cclCode
+
+:cclCode rdf:type owl:DatatypeProperty ;
+         
+         rdfs:label "Published US Classification Class/Subclass (CCL) code"@en-us ;
+         
+         rdfs:domain bibo:Patent .
+
+
+
+###  http://vivoweb.org/ontology/core#contactInformation
+
+:contactInformation rdf:type owl:DatatypeProperty ,
+                             owl:FunctionalProperty ;
+                    
+                    rdfs:label "contact information"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#courseCredits
+
+:courseCredits rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
+               
+               rdfs:label "credits"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#dateTime
+
+:dateTime rdf:type owl:DatatypeProperty ;
+          
+          rdfs:label "date/time"@en-us ;
+          
+          rdfs:domain :DateTimeValue ;
+          
+          rdfs:range xsd:dateTime .
+
+
+
+###  http://vivoweb.org/ontology/core#departmentOrSchool
+
+:departmentOrSchool rdf:type owl:DatatypeProperty ;
+                    
+                    rdfs:label "department or school name within institution"@en-us ;
+                    
+                    vitro:descriptionAnnot "Not intended to be an institution name."^^xsd:string ;
+                    
+                    rdfs:domain :EducationalTraining .
+
+
+
+###  http://vivoweb.org/ontology/core#description
+
+:description rdf:type owl:DatatypeProperty ;
+             
+             rdfs:label "description"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#eRACommonsId
+
+:eRACommonsId rdf:type owl:DatatypeProperty ;
+              
+              rdfs:label "eRA Commons id"@en-us ;
+              
+              rdfs:subPropertyOf :identifier ;
+              
+              rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#email
+
+:email rdf:type owl:DatatypeProperty ;
+       
+       rdfs:label "email"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#entryTerm
+
+:entryTerm rdf:type owl:DatatypeProperty ;
+           
+           rdfs:label "entry term"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#faxNumber
+
+:faxNumber rdf:type owl:DatatypeProperty ;
+           
+           rdfs:label "fax"@en-us ;
+           
+           rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#freetextKeyword
+
+:freetextKeyword rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:label "keywords"@en-us ;
+                 
+                 vitro:exampleAnnot """conservation
+
+use one freetextKeyword assertion for each keyword or phrase."""^^xsd:string ;
+                 
+                 vitro:descriptionAnnot "one keyword or phrase per freetextKeyword assertion"^^xsd:string ;
+                 
+                 owl:equivalentProperty :majorField .
+
+
+
+###  http://vivoweb.org/ontology/core#grantDirectCosts
+
+:grantDirectCosts rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  
+                  rdfs:label "direct costs"@en-us ;
+                  
+                  rdfs:domain :Grant .
+
+
+
+###  http://vivoweb.org/ontology/core#hideFromDisplay
+
+:hideFromDisplay rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 
+                 rdfs:label "hide from display"@en-us ;
+                 
+                 rdfs:range xsd:boolean .
+
+
+
+###  http://vivoweb.org/ontology/core#hrJobTitle
+
+:hrJobTitle rdf:type owl:DatatypeProperty ;
+            
+            rdfs:label "HR job title"@en-us ;
+            
+            vitro:descriptionAnnot "Definition http://en.wikipedia.org/wiki/Job_title#Job_title."^^xsd:string ;
+            
+            vitro:exampleAnnot "administrative secretary"^^xsd:string ;
+            
+            rdfs:domain :Position .
+
+
+
+###  http://vivoweb.org/ontology/core#iclCode
+
+:iclCode rdf:type owl:DatatypeProperty ;
+         
+         rdfs:label "International Classification (ICL) code"@en-us ;
+         
+         vitro:descriptionAnnot """The International classification(s) to which the published application has been assigned.
+"""^^xsd:string ;
+         
+         rdfs:domain bibo:Patent .
+
+
+
+###  http://vivoweb.org/ontology/core#identifier
+
+:identifier rdf:type owl:DatatypeProperty ;
+            
+            rdfs:label "identifier"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#isCorrespondingAuthor
+
+:isCorrespondingAuthor rdf:type owl:DatatypeProperty ,
+                                owl:FunctionalProperty ;
+                       
+                       rdfs:label "is this person a corresponding author?"@en-us ;
+                       
+                       vitro:exampleAnnot "True; False"^^xsd:string ;
+                       
+                       rdfs:domain :Authorship ;
+                       
+                       rdfs:range xsd:boolean .
+
+
+
+###  http://vivoweb.org/ontology/core#licenseNumber
+
+:licenseNumber rdf:type owl:DatatypeProperty ;
+               
+               rdfs:label "license number"@en-us ;
+               
+               rdfs:domain :Licensure .
+
+
+
+###  http://vivoweb.org/ontology/core#linkAnchorText
+
+:linkAnchorText rdf:type owl:DatatypeProperty ;
+                
+                rdfs:label "link anchor text"@en-us ;
+                
+                rdfs:domain :URLLink .
+
+
+
+###  http://vivoweb.org/ontology/core#linkURI
+
+:linkURI rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
+         
+         rdfs:label "link URI"@en-us ;
+         
+         rdfs:domain :URLLink .
+
+
+
+###  http://vivoweb.org/ontology/core#localAwardId
+
+:localAwardId rdf:type owl:DatatypeProperty ;
+              
+              rdfs:label "local award id"@en-us ;
+              
+              vitro:descriptionAnnot "core:localAwardId has a domain of core:Grant, and should be public since that's its public identifier for local use by OSP, accounting, department admins, and the PI "^^xsd:string ;
+              
+              rdfs:domain :Grant ;
+              
+              rdfs:subPropertyOf :identifier .
+
+
+
+###  http://vivoweb.org/ontology/core#majorField
+
+:majorField rdf:type owl:DatatypeProperty ;
+            
+            rdfs:label "major field of degree"@en-us ;
+            
+            vitro:exampleAnnot "Information Science; Computer Science; Anthropology"^^xsd:string ;
+            
+            rdfs:domain :EducationalTraining .
+
+
+
+###  http://vivoweb.org/ontology/core#middleName
+
+:middleName rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
+            
+            rdfs:label "middle name or initial"@en-us ;
+            
+            rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#nihmsid
+
+:nihmsid rdf:type owl:DatatypeProperty ;
+         
+         rdfs:label "NIH Manuscript Submission System ID"@en-us ;
+         
+         rdfs:domain bibo:Article ;
+         
+         rdfs:subPropertyOf bibo:identifier .
+
+
+
+###  http://vivoweb.org/ontology/core#orcidId
+
+:orcidId rdf:type owl:DatatypeProperty ;
+         
+         rdfs:label "ORCID id"@en-us ;
+         
+         vitro:descriptionAnnot """We can't yet assume that we will only have a single ORCID id for a person.
+source: http://en.wikipedia.org/wiki/ORCID .
+
+
+We wanted this property to be visible so that people would be aware that we intend to carry ORCID ids in VIVO for cross-reference. I don't believe any ORCID ids have been minted yet, but it's hard to imagine they would need to be private since the goal of having them is to disambiguate author references internationally. However, this and the researcherId and scopusId (also with domain foaf:Person) can stay as visible to self-editors for now as they will probably be used mostly in data ingest. It might be nice in the future to let people make their own decision about whether these are visible."""^^xsd:string ;
+         
+         rdfs:subPropertyOf :identifier ;
+         
+         rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#outreachOverview
+
+:outreachOverview rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  
+                  rdfs:label "outreach overview"@en-us ;
+                  
+                  vitro:exampleAnnot "My extension program consists of developing and reporting disease management strategies that are both economically and environmentally sound for fresh market vegetable production. We hope that some of this testing will result in practices adaptable for organic production."^^xsd:string ;
+                  
+                  vitro:descriptionAnnot "Used for a single narrative summary of outreach, typically covering a wide range of activities and time periods; use Outreach Provider Role for information on individual activities"^^xsd:string ;
+                  
+                  rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#overview
+
+:overview rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
+          
+          rdfs:label "overview"@en-us ;
+          
+          rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#patentNumber
+
+:patentNumber rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
+              
+              rdfs:label "patent number"@en-us ;
+              
+              vitro:descriptionAnnot "source of definition: http://www.uspto.gov/main/glossary/#p . The following site has patent number formats: http://www.uspto.gov/patents/ebc/kindcodesum.jsp ."^^xsd:string ;
+              
+              rdfs:domain bibo:Patent ;
+              
+              rdfs:subPropertyOf bibo:identifier .
+
+
+
+###  http://vivoweb.org/ontology/core#phoneNumber
+
+:phoneNumber rdf:type owl:DatatypeProperty ;
+             
+             rdfs:label "phone"@en-us ;
+             
+             rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#placeOfPublication
+
+:placeOfPublication rdf:type owl:DatatypeProperty ,
+                             owl:FunctionalProperty ;
+                    
+                    rdfs:label "place of publication"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#pmcid
+
+:pmcid rdf:type owl:DatatypeProperty ;
+       
+       rdfs:label "PubMed Central ID"@en-us ;
+       
+       vitro:descriptionAnnot "   A PMCID is a unique PubMed Central reference number, which is assigned to each full-text record made available A PMCID is a unique PubMed Central reference number, which is assigned to each full-text record made available in PubMed Central. The PMCID is issued shortly after the PI or author approves the PubMed Central formatted web version of the submission. "^^xsd:string ;
+       
+       rdfs:domain bibo:Article ;
+       
+       rdfs:subPropertyOf bibo:identifier .
+
+
+
+###  http://vivoweb.org/ontology/core#preferredDisplayOrder
+
+:preferredDisplayOrder rdf:type owl:DatatypeProperty ;
+                       
+                       rdfs:label "preferred display order"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#preferredTitle
+
+:preferredTitle rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                
+                rdfs:label "preferred title"@en-us ;
+                
+                vitro:descriptionAnnot "For example an HR job title for a person might be - Assistant University Librarian, and the preferred job title for that same person could be - Physical Sciences Librarian."^^xsd:string ;
+                
+                vitro:exampleAnnot "Physical Sciences Librarian"^^xsd:string ;
+                
+                rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#primaryEmail
+
+:primaryEmail rdf:type owl:DatatypeProperty ;
+              
+              rdfs:label "primary email"@en-us ;
+              
+              rdfs:subPropertyOf :email .
+
+
+
+###  http://vivoweb.org/ontology/core#primaryPhoneNumber
+
+:primaryPhoneNumber rdf:type owl:DatatypeProperty ;
+                    
+                    rdfs:label "primary phone"@en-us ;
+                    
+                    rdfs:subPropertyOf :phoneNumber ;
+                    
+                    rdfs:domain foaf:Agent .
+
+
+
+###  http://vivoweb.org/ontology/core#rank
+
+:rank rdf:type owl:DatatypeProperty ;
+      
+      rdfs:label "rank"@en-us ;
+      
+      vitro:descriptionAnnot "this number indicates a position in a list"^^xsd:string ;
+      
+      rdfs:range xsd:int .
+
+
+
+###  http://vivoweb.org/ontology/core#reportId
+
+:reportId rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
+          
+          rdfs:label "report identifier"@en-us ;
+          
+          rdfs:domain bibo:Report ;
+          
+          rdfs:subPropertyOf bibo:identifier .
+
+
+
+###  http://vivoweb.org/ontology/core#researchOverview
+
+:researchOverview rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  
+                  rdfs:label "research overview"@en-us ;
+                  
+                  vitro:descriptionAnnot "Used for a single narrative summary of research, typically covering a wide range of activities and time periods; use Researcher Role for information on individual activities"^^xsd:string ;
+                  
+                  rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#researcherId
+
+:researcherId rdf:type owl:DatatypeProperty ;
+              
+              rdfs:label "ISI researcher id"@en-us ;
+              
+              vitro:descriptionAnnot """RearcherID is a Thomson Reuters project where researchers have a place to manage and share their professional information. It will allow them to solve author identity issues while simultaneously adding dynamic citation metrics and collaboration networks to your personal profile.
+Definition source: http://isiwebofknowledge.com/researcherid/"""^^xsd:string ;
+              
+              rdfs:subPropertyOf :identifier ;
+              
+              rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#scopusId
+
+:scopusId rdf:type owl:DatatypeProperty ;
+          
+          rdfs:label "Scopus id"@en-us ;
+          
+          vitro:descriptionAnnot "Home page for Scopus: http://www.scopus.com/home.url"^^xsd:string ;
+          
+          rdfs:subPropertyOf :identifier ;
+          
+          rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#seatingCapacity
+
+:seatingCapacity rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 
+                 rdfs:label "seating capacity"@en-us ;
+                 
+                 vitro:exampleAnnot "55"^^xsd:string ;
+                 
+                 vitro:descriptionAnnot "definition modified from: source (http://en.wikipedia.org/wiki/Seating_capacity)."^^xsd:string ;
+                 
+                 rdfs:domain :Room ;
+                 
+                 rdfs:range xsd:int .
+
+
+
+###  http://vivoweb.org/ontology/core#sponsorAwardId
+
+:sponsorAwardId rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                
+                rdfs:label "sponsor award id"@en-us ;
+                
+                vitro:descriptionAnnot """Has a domain of Grant. There is not a strong reason have this be publically visible, since most users would care more about the name of the sponsoring agency than its identifier, but it does no harm to be public.
+
+
+See also core:localAwardId.
+"""^^xsd:string ;
+                
+                rdfs:domain :Grant ;
+                
+                rdfs:subPropertyOf :identifier .
+
+
+
+###  http://vivoweb.org/ontology/core#supplementalInformation
+
+:supplementalInformation rdf:type owl:DatatypeProperty ;
+                         
+                         rdfs:label "supplemental information"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#teachingOverview
+
+:teachingOverview rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  
+                  rdfs:label "teaching overview"@en-us ;
+                  
+                  vitro:descriptionAnnot "Used for a single narrative summary of teaching, typically covering a wide range of courses including for credit and non-credit teaching over multiple semesters; the \"teaches\" property links a person directly with an instance of a Semester Class, typically from an institutional database of record; then use Teacher Role for information about a person's role in non-credit teaching or their specific contribution to individual courses"^^xsd:string ;
+                  
+                  rdfs:domain foaf:Person .
+
+
+
+###  http://vivoweb.org/ontology/core#termLabel
+
+:termLabel rdf:type owl:DatatypeProperty ;
+           
+           rdfs:label "term label"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#termType
+
+:termType rdf:type owl:DatatypeProperty ;
+          
+          rdfs:label "term type"@en-us .
+
+
+
+###  http://vivoweb.org/ontology/core#totalAwardAmount
+
+:totalAwardAmount rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  
+                  rdfs:label "total award amount"@en-us ;
+                  
+                  rdfs:domain :Grant .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://aims.fao.org/aos/geopolitical.owl#geographical_region
+
+geo:geographical_region rdfs:subClassOf :TransnationalRegion .
+
+
+
+###  http://aims.fao.org/aos/geopolitical.owl#self_governing
+
+geo:self_governing owl:equivalentClass :Country .
+
+
+
+###  http://aims.fao.org/aos/geopolitical.owl#territory
+
+geo:territory rdfs:subClassOf :GeopoliticalEntity .
+
+
+
+###  http://purl.obolibrary.org/obo/ERO_0000595
+
+ero:ERO_0000595 rdf:type owl:Class ;
+                
+                rdfs:label "Research Opportunity"@en-us ;
+                
+                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty :dateTimeInterval ;
+                                  owl:allValuesFrom :DateTimeInterval
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :description ;
+                                  owl:allValuesFrom rdfs:Literal
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasFundingVehicle ;
+                                  owl:allValuesFrom :Grant
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :contactInformation ;
+                                  owl:allValuesFrom rdfs:Literal
+                                ] ;
+                
+                vitro:shortDef "An offering through an ongoing program or single request of research support: internships, positions, financial awards or other forms of tangible or intangible support"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#AcademicDegree
+
+:AcademicDegree rdf:type owl:Class ;
+                
+                rdfs:label "Academic Degree"@en-us ;
+                
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty :email ;
+                                      owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                    ] ;
+                
+                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty :abbreviation ;
+                                  owl:allValuesFrom rdfs:Literal
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :abbreviation ;
+                                  owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                ] ;
+                
+                vitro:shortDef "An academic degree at any level, both as reported by individuals for employment and as offered by academic degree programs."^^xsd:string ;
+                
+                vitro:exampleAnnot "B.A. Bachelor of Arts"^^xsd:string ;
+                
+                vitro:descriptionAnnot "This list may have multiple abbreviations for some degrees."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#AcademicDepartment
+
+:AcademicDepartment rdf:type owl:Class ;
+                    
+                    rdfs:label "Academic Department"@en-us ;
+                    
+                    rdfs:subClassOf :Department ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :offersCourse ;
+                                      owl:allValuesFrom :Course
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :offersDegree ;
+                                      owl:allValuesFrom :AcademicDegree
+                                    ] ;
+                    
+                    vitro:shortDef "A distinct, usually specialized educational unit within an educational organization."^^xsd:string ;
+                    
+                    vitro:exampleAnnot "Endodontics (department within a College of Dentistry); English (department within a College of Liberal Arts)"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#AcademicTerm
+
+:AcademicTerm rdf:type owl:Class ;
+              
+              rdfs:label "Academic Term"@en-us ;
+              
+              rdfs:subClassOf :DateTimeInterval ;
+              
+              vitro:shortDef "An explicit individual academic term, quarter, or semester rather than the generic fall, spring or summer semester."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#AcademicYear
+
+:AcademicYear rdf:type owl:Class ;
+              
+              rdfs:label "Academic Year"@en-us ;
+              
+              rdfs:subClassOf :DateTimeInterval ;
+              
+              vitro:shortDef "An explicit individual period considered by an academic institution to be its primary academic cycle."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Address
+
+:Address rdf:type owl:Class ;
+         
+         rdfs:label "Address"@en-us ;
+         
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasGeographicLocation ;
+                           owl:allValuesFrom :GeographicLocation
+                         ] ;
+         
+         vitro:exampleAnnot "200 University Avenue West, Waterloo, Ontario, Canada N2L 3G1"^^xsd:string ;
+         
+         vitro:shortDef "A specification of a location. To classify US specific addresses, use core:US Postal Code."^^xsd:string ;
+         
+         vitro:descriptionAnnot "Address has properties for department name, street, city, state or province, postal code, and country. For US specific address, classify using core:US Postal Code. core:Address will display all addresses."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#AdvisingRelationship
+
+:AdvisingRelationship rdf:type owl:Class ;
+                      
+                      rdfs:label "Advising Relationship"@en-us ;
+                      
+                      rdfs:subClassOf :Relationship ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :dateTimeInterval ;
+                                        owl:allValuesFrom :DateTimeInterval
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasSubjectArea ;
+                                        owl:allValuesFrom owl:Thing
+                                      ] ;
+                      
+                      vitro:shortDef "A dual relationship of one person being advised or mentored by another person, typically including start and end dates"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Agreement
+
+:Agreement rdf:type owl:Class ;
+           
+           rdfs:label "Agreement"@en-us ;
+           
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :contributingRole ;
+                             owl:allValuesFrom :Role
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :geographicFocus ;
+                             owl:allValuesFrom :GeographicRegion
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :dateTimeInterval ;
+                             owl:allValuesFrom :DateTimeInterval
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasSubjectArea ;
+                             owl:allValuesFrom owl:Thing
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :administeredBy ;
+                             owl:allValuesFrom foaf:Organization
+                           ] ;
+           
+           vitro:shortDef "A negotiated arrangement between two or more parties regarding a course of action"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Association
+
+:Association rdf:type owl:Class ;
+             
+             rdfs:label "Association"@en-us ;
+             
+             rdfs:subClassOf foaf:Organization ;
+             
+             vitro:shortDef "A formal organization of people or organizations around a subject or practice."^^xsd:string ;
+             
+             vitro:exampleAnnot "Special Libraries Association; Association for Computing Machinery(ACM); American Medical Informatics Association(AMIA)"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#AttendeeRole
+
+:AttendeeRole rdf:type owl:Class ;
+              
+              rdfs:label "Attendee Role"@en-us ;
+              
+              rdfs:subClassOf :Role ;
+              
+              vitro:shortDef "A role of attending an Event or EventSeries"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Authorship
+
+:Authorship rdf:type owl:Class ;
+            
+            rdfs:label "Authorship"@en-us ;
+            
+            rdfs:subClassOf :Relationship ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :linkedAuthor ;
+                              owl:allValuesFrom foaf:Agent
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hideFromDisplay ;
+                              owl:allValuesFrom xsd:boolean
+                            ] ;
+            
+            rdfs:comment ""^^xsd:string ;
+            
+            vitro:descriptionAnnot """Authorship of journal articles, books and other original works is a means by which academics communicate the results of their scholarly work, establish priority for their discoveries, and build their reputation among their peers.
+This class allows for linking an author to a publication while indicating information about that author's authorship."""^^xsd:string ;
+            
+            vitro:shortDef "Contains the authors name, their rank in the publication, and whether or not they are a corresponding author on the publication."^^xsd:string ;
+            
+            vitro:exampleAnnot "Currently any abstract name is given to members of this class. This could change in the future."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Award
+
+:Award rdf:type owl:Class ;
+       
+       rdfs:label "Award or Honor"@en-us ;
+       
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :awardConferredBy ;
+                         owl:allValuesFrom foaf:Organization
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :description ;
+                         owl:allValuesFrom rdfs:Literal
+                       ] ;
+       
+       vitro:descriptionAnnot "An Award or Honor"^^xsd:string ;
+       
+       vitro:shortDef "An Award or Honor"^^xsd:string ;
+       
+       vitro:exampleAnnot "Wiley Prize in Biomedical Sciences"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#AwardReceipt
+
+:AwardReceipt rdf:type owl:Class ;
+              
+              rdfs:label "Award or Honor Receipt"@en-us ;
+              
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :dateTimeInterval ;
+                                owl:allValuesFrom :DateTimeInterval
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :description ;
+                                owl:allValuesFrom rdfs:Literal
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :dateTimeValue ;
+                                owl:allValuesFrom :DateTimeValue
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :awardConferredBy ;
+                                owl:allValuesFrom foaf:Organization
+                              ] ;
+              
+              vitro:descriptionAnnot "The award bestowed may be represented with the Award class."^^xsd:string ;
+              
+              vitro:shortDef "The bestowal of an award, honor, or distinction to a person or person's at a particular time.  "^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Blog
+
+:Blog rdf:type owl:Class ;
+      
+      rdfs:label "Blog"@en-us ;
+      
+      rdfs:subClassOf bibo:Website ;
+      
+      vitro:descriptionAnnot "Blog is short for weblog. "^^xsd:string ;
+      
+      vitro:exampleAnnot "Library of Congress Blog"^^xsd:string ;
+      
+      vitro:shortDef "Regularly updated online journal or newsletter by one or more writers, called bloggers, containing articles and commentary of interest to the blogger"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#BlogPosting
+
+:BlogPosting rdf:type owl:Class ;
+             
+             rdfs:label "Blog Posting"@en-us ;
+             
+             rdfs:subClassOf bibo:Article ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasPublicationVenue ;
+                               owl:allValuesFrom :Blog
+                             ] ;
+             
+             vitro:exampleAnnot "A specific blog posting"^^xsd:string ;
+             
+             vitro:shortDef "An online article or commentary appearing on a blog"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Building
+
+:Building rdf:type owl:Class ;
+          
+          rdfs:label "Building"@en-us ;
+          
+          rdfs:subClassOf :Facility ;
+          
+          vitro:shortDef "Building that provides a particular service or is used for a particular activity."^^xsd:string ;
+          
+          vitro:descriptionAnnot "Enter building name. If the building's name is a number (as in many governmental organizations such as national laboratories and military bases), then enter it. Do not confuse with the number that appears in a postal address."^^xsd:string ;
+          
+          vitro:exampleAnnot "Martha Van Rensselaer Hall (VR); Caldwell Hall (CD); University Auditorium"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Campus
+
+:Campus rdf:type owl:Class ;
+        
+        rdfs:label "Campus"@en-us ;
+        
+        rdfs:subClassOf :GeographicLocation ;
+        
+        vitro:exampleAnnot "Cornell Ithaca; Cornell Geneva; Cornell New York City; Cornell Qatar"^^xsd:string ;
+        
+        vitro:descriptionAnnot "Definition taken from dictionary.com (http://dictionary.reference.com/browse/campus)."^^xsd:string ;
+        
+        vitro:shortDef "The grounds of a school, college, university, or hospital. Or, a large, usually suburban, landscaped business or industrial site."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#CaseStudy
+
+:CaseStudy rdf:type owl:Class ;
+           
+           rdfs:label "Case Study"@en-us ;
+           
+           rdfs:subClassOf bibo:Document ;
+           
+           vitro:descriptionAnnot "A form of qualitative descriptive research that is used to study individuals, a small group of participants, or a group as a whole. Medical usage (from MeSH): clinical presentations that may be followed by evaluative studies that eventually lead to a diagnosis. "^^xsd:string ;
+           
+           vitro:shortDef "A qualitative descriptive research study of individuals or a group"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Catalog
+
+:Catalog rdf:type owl:Class ;
+         
+         rdfs:label "Catalog"@en-us ;
+         
+         rdfs:subClassOf bibo:Document ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :publisher ;
+                           owl:allValuesFrom foaf:Organization
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :placeOfPublication ;
+                           owl:allValuesFrom rdfs:Literal
+                         ] ;
+         
+         vitro:shortDef "A list of items in a collection; an ordered compilation of item descriptions and sufficient information to afford access to them"^^xsd:string ;
+         
+         vitro:exampleAnnot "NLM Catalog"^^xsd:string ;
+         
+         vitro:descriptionAnnot "Short Definition is the Medical Subject Heading (MeSH) definition "^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Center
+
+:Center rdf:type owl:Class ;
+        
+        rdfs:label "Center"@en-us ;
+        
+        rdfs:subClassOf foaf:Organization ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :administers ;
+                          owl:allValuesFrom :Grant
+                        ] ;
+        
+        vitro:shortDef "A place where a particular activity or service is concentrated."^^xsd:string ;
+        
+        vitro:exampleAnnot "Alchohol Education Center; Center for Arts and Public Policy; Hearing Research Center"^^xsd:string ;
+        
+        vitro:descriptionAnnot "Short Definition take from http://www.thefreedictionary.com/center."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Certificate
+
+:Certificate rdf:type owl:Class ;
+             
+             rdfs:label "Certificate"@en-us ;
+             
+             rdfs:subClassOf :Credential ;
+             
+             vitro:descriptionAnnot "A document confirming certain characteristics of a person or organization, usually provided by some form of external review, education, or assessment."^^xsd:string ;
+             
+             vitro:shortDef "A document confirming certain characteristics of a person or organization, usually provided by some form of external review, education, or assessment."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Certification
+
+:Certification rdf:type owl:Class ;
+               
+               rdfs:label "Certification"@en-us ;
+               
+               rdfs:subClassOf :IssuedCredential ;
+               
+               vitro:shortDef "An issued certificate"^^xsd:string ;
+               
+               vitro:descriptionAnnot "see also core:Certificate"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ClinicalOrganization
+
+:ClinicalOrganization rdf:type owl:Class ;
+                      
+                      rdfs:label "Clinical Organization"@en-us ;
+                      
+                      rdfs:subClassOf foaf:Organization ;
+                      
+                      vitro:shortDef "Any organization with a significant clinical function as a matter of course and not just through occasional clinical roles"^^xsd:string ;
+                      
+                      vitro:descriptionAnnot "In the future we may be able to make this a defined class that would not need to be directly asserted, but the consensus seems to be that some organizations \"are\" clinical and some \"are\" research organizations and that the distinction is important enough to warrant the additional class and class assertions"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ClinicalRole
+
+:ClinicalRole rdf:type owl:Class ;
+              
+              rdfs:label "Clinical Role"@en-us ;
+              
+              rdfs:subClassOf :Role ;
+              
+              vitro:shortDef "A role of observing or treating patients"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#CoPrincipalInvestigatorRole
+
+:CoPrincipalInvestigatorRole rdf:type owl:Class ;
+                             
+                             rdfs:label "Co-Principal Investigator Role"@en-us ;
+                             
+                             rdfs:subClassOf :InvestigatorRole ;
+                             
+                             vitro:shortDef "Role of co-principal investigator of an Agreement (for example, a grant), who devotes a specified percentage of time and is considered key personnel."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#College
+
+:College rdf:type owl:Class ;
+         
+         rdfs:label "College"@en-us ;
+         
+         rdfs:subClassOf foaf:Organization ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :offersDegree ;
+                           owl:allValuesFrom :AcademicDegree
+                         ] ;
+         
+         vitro:shortDef "A primary academic unit within a University or a free-standing higher education organization without graduate degree programs."^^xsd:string ;
+         
+         vitro:exampleAnnot "College of Arts & Sciences; Ivy Tech Community College"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Committee
+
+:Committee rdf:type owl:Class ;
+           
+           rdfs:label "Committee"@en-us ;
+           
+           rdfs:subClassOf foaf:Group ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCurrentMember ;
+                             owl:allValuesFrom foaf:Person
+                           ] ;
+           
+           vitro:shortDef "A group of people organized for a specific purpose (e.g., a reporting or advisory role), often with a charge and for a specific duration."^^xsd:string ;
+           
+           vitro:exampleAnnot "Curriculum Steering Committee; PhD Advisory Committee"^^xsd:string ;
+           
+           vitro:descriptionAnnot "There could be many subclasses such as thesis committee or tenure committee, but these may typically be differentiated via the moniker unless distinct properties become important."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Company
+
+:Company rdf:type owl:Class ;
+         
+         rdfs:label "Company"@en-us ;
+         
+         rdfs:subClassOf foaf:Organization ;
+         
+         vitro:shortDef "a legally-recognized business organization"^^xsd:string ;
+         
+         vitro:descriptionAnnot "from Wikipedia: \"A company is a form of business organization. It is an association or collection of individual real persons and/or other companies ... This collection, group or association of persons can be made to exist in law and then a company is itself considered a \"legal person\". The name company arose because, at least originally, it represented or was owned by more than one real or legal person.\""^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Competition
+
+:Competition rdf:type owl:Class ;
+             
+             rdfs:label "Competition"@en-us ;
+             
+             rdfs:subClassOf event:Event ;
+             
+             vitro:shortDef "An occasion on which a winner is selected from among two or more contestants."^^xsd:string ;
+             
+             vitro:exampleAnnot "Intel Talent Search; poetry contest"^^xsd:string ;
+             
+             vitro:descriptionAnnot "Not the same as an award or distinction."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ConferencePaper
+
+:ConferencePaper rdf:type owl:Class ;
+                 
+                 rdfs:label "Conference Paper"@en-us ;
+                 
+                 rdfs:subClassOf bibo:Article ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty bibo:presentedAt ;
+                                   owl:allValuesFrom bibo:Conference
+                                 ] ;
+                 
+                 vitro:shortDef "A paper presented at a conference; optionally collected into a Proceedings or a special Journal issue"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ConferencePoster
+
+:ConferencePoster rdf:type owl:Class ;
+                  
+                  rdfs:label "Conference Poster"@en-us ;
+                  
+                  rdfs:subClassOf bibo:Document ;
+                  
+                  vitro:shortDef "The digital file (or physical equivalent), if available after the conference, vs. the act of attending/presenting: use ConferencePresentation for information about date/time/location/name of the event where the poster was presented"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ConferenceSeries
+
+:ConferenceSeries rdf:type owl:Class ;
+                  
+                  rdfs:label "Conference Series"@en-us ;
+                  
+                  rdfs:subClassOf :EventSeries ;
+                  
+                  vitro:shortDef "An organized series of a meeting for consultation or discussion."^^xsd:string ;
+                  
+                  vitro:descriptionAnnot "For individual, separate conferences, use conference instead.  core:ConferenceSeries and core:SeminarSeries are very similar."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Consortium
+
+:Consortium rdf:type owl:Class ;
+            
+            rdfs:label "Consortium"@en-us ;
+            
+            rdfs:subClassOf foaf:Organization ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasCurrentMember ;
+                              owl:allValuesFrom foaf:Organization
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasCurrentMember ;
+                              owl:minCardinality "2"^^xsd:nonNegativeInteger
+                            ] ;
+            
+            vitro:exampleAnnot "Committee on Institutional Cooperation (CIC); The Five Colleges of Ohio"^^xsd:string ;
+            
+            vitro:shortDef "Independent organizations formally working together toward a common goal, under an expressed agreement"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Continent
+
+:Continent rdf:type owl:Class ;
+           
+           rdfs:label "Continent"@en-us ;
+           
+           rdfs:subClassOf :TransnationalRegion ;
+           
+           vitro:shortDef "A large contiguous landmass  that is at least partially surrounded by water, together with any islands on its continental shelf."^^xsd:string ;
+           
+           vitro:descriptionAnnot "Short Definition take from http://en.wiktionary.org/wiki/continent."^^xsd:string ;
+           
+           vitro:exampleAnnot "The seven commonly recognized continents are Africa; Antarctica; Asia; Australia; Europe; North America; South America"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Contract
+
+:Contract rdf:type owl:Class ;
+          
+          rdfs:label "Contract"@en-us ;
+          
+          rdfs:subClassOf :Agreement ;
+          
+          vitro:shortDef "An agreement involving specific deliverables and payment"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#CoreLaboratory
+
+:CoreLaboratory rdf:type owl:Class ;
+                
+                rdfs:label "Core Laboratory"@en-us ;
+                
+                rdfs:subClassOf :ServiceProvidingLaboratory ;
+                
+                vitro:shortDef "A lab providing services such as training, protocols, or access to instruments or software"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Country
+
+:Country rdf:type owl:Class ;
+         
+         rdfs:label "Country"@en-us ;
+         
+         rdfs:subClassOf :GeopoliticalEntity ;
+         
+         vitro:exampleAnnot "Afghanistan; Antigua and Barbuda; Cameroon; Iceland; Jamaica; Nigeria; United States of America"^^xsd:string ;
+         
+         vitro:shortDef "An area of land distinguished by its political autonomy. Politically independent territories."^^xsd:string ;
+         
+         vitro:descriptionAnnot "Source of the Short Definition: http://www.thefreedictionary.com/country.  This is also the same as geopolitical.owl:self_governing."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#County
+
+:County rdf:type owl:Class ;
+        
+        rdfs:label "County"@en-us ;
+        
+        rdfs:subClassOf :GeopoliticalEntity ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :geographicallyWithin ;
+                          owl:allValuesFrom :StateOrProvince
+                        ] ;
+        
+        vitro:exampleAnnot "Alachua; Baker; Bradford; Kenora; Ottawa; Waterloo"^^xsd:string ;
+        
+        vitro:descriptionAnnot "Short Definition modified from the one found here: http://www.thefreedictionary.com/county."^^xsd:string ;
+        
+        vitro:shortDef "The largest administrative division of most states or provinces."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Course
+
+:Course rdf:type owl:Class ;
+        
+        rdfs:label "Course"@en-us ;
+        
+        rdfs:subClassOf event:Event ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :courseCredits ;
+                          owl:allValuesFrom rdfs:Literal
+                        ] ;
+        
+        vitro:descriptionAnnot "A course as taught in one time period (such as a semester; although note that a course could consist of only one meeting (teaching session)) by one or more instructors, normally but not always for credit. Does not represent either each meeting of the course or the course offering such as Biology 101 taught every semester from 1980 to 2010"^^xsd:string ;
+        
+        vitro:shortDef "A course as taught in one time period by one or more instructors, normally but not always for credit. Does not represent either each meeting of the course or the course offering such as Biology 101 taught every semester from 1980 to 2010"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Credential
+
+:Credential rdf:type owl:Class ;
+            
+            rdfs:label "Credential"@en-us ;
+            
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :validIn ;
+                              owl:allValuesFrom :GeographicLocation
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasGoverningAuthority ;
+                              owl:allValuesFrom foaf:Organization
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasSubjectArea ;
+                              owl:allValuesFrom owl:Thing
+                            ] ;
+            
+            vitro:shortDef "An attestation of qualification, competence, or authority issued to an individual by a third party with a relevant or  de facto authority or assumed competence to do so."^^xsd:string ;
+            
+            vitro:descriptionAnnot "An attestation of qualification, competence, or authority issued to an individual by a third party with a relevant or  de facto authority or assumed competence to do so."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Database
+
+:Database rdf:type owl:Class ;
+          
+          rdfs:label "Database"@en-us ;
+          
+          rdfs:subClassOf bibo:CollectedDocument ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :publisher ;
+                            owl:allValuesFrom foaf:Organization
+                          ] ;
+          
+          vitro:shortDef "A structured file of information or a set of logically related data stored and retrieved using computer-based means"^^xsd:string ;
+          
+          vitro:exampleAnnot "PubMed"^^xsd:string ;
+          
+          vitro:descriptionAnnot "Short Definition is the Medical Subject Heading (MeSH) definition"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Dataset
+
+:Dataset rdf:type owl:Class ;
+         
+         rdfs:label "Dataset"@en-us ;
+         
+         rdfs:subClassOf :InformationResource ;
+         
+         vitro:shortDef "A named collection of data, usually containing only one type of data"^^xsd:string ;
+         
+         vitro:exampleAnnot "US Patent Data; US Job Data"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#DateTimeInterval
+
+:DateTimeInterval rdf:type owl:Class ;
+                  
+                  rdfs:label "Date/Time Interval"@en-us ;
+                  
+                  vitro:shortDef "a specific period or duration, defined by (optional) start and end date/times."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#DateTimeValue
+
+:DateTimeValue rdf:type owl:Class ;
+               
+               rdfs:label "Date/Time Value"@en-us ;
+               
+               vitro:shortDef "A date and/or time"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#DateTimeValuePrecision
+
+:DateTimeValuePrecision rdf:type owl:Class ;
+                        
+                        rdfs:label "Date/Time Value Precision"@en-us ;
+                        
+                        vitro:shortDef "Indicates the precision of the value of a DateTimeValue instance."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Department
+
+:Department rdf:type owl:Class ;
+            
+            rdfs:label "Department"@en-us ;
+            
+            rdfs:subClassOf foaf:Organization ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :administers ;
+                              owl:allValuesFrom :Grant
+                            ] ;
+            
+            vitro:shortDef "A distinct, usually ongoing and specialized unit within a large organization."^^xsd:string ;
+            
+            vitro:descriptionAnnot "Definition modified from the definition here: http://dictionary.reference.com/browse/department. It is difficult to tell the difference between and department and a division."^^xsd:string ;
+            
+            vitro:exampleAnnot "Legal (department within a company); Use for any non-academic department"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Division
+
+:Division rdf:type owl:Class ;
+          
+          rdfs:label "Division"@en-us ;
+          
+          rdfs:subClassOf foaf:Organization ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :administers ;
+                            owl:allValuesFrom :Grant
+                          ] ;
+          
+          vitro:shortDef "An area of corporate activity organized as an administrative or functional unit."^^xsd:string ;
+          
+          vitro:exampleAnnot "Cardiovascular Medicine (division within medicine)"^^xsd:string ;
+          
+          vitro:descriptionAnnot "Definition modified from http://www.thefreedictionary.com/division.  It is difficult to tell the difference between a division and a department."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#EditorRole
+
+:EditorRole rdf:type owl:Class ;
+            
+            rdfs:label "Editor Role"@en-us ;
+            
+            rdfs:subClassOf :Role ;
+            
+            vitro:shortDef "An ongoing editorial responsibility for a bibo:Collection, such as a Journal or Series"^^xsd:string ;
+            
+            vitro:descriptionAnnot "An ongoing editorial responsibility for a bibo:Collection, such as a Journal or Series"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#EditorialArticle
+
+:EditorialArticle rdf:type owl:Class ;
+                  
+                  rdfs:label "Editorial Article"@en-us ;
+                  
+                  rdfs:subClassOf bibo:Article ;
+                  
+                  vitro:shortDef "An article of opinion, typically published in a newspaper. For academics, most commonly Op Ed pieces"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#EducationalTraining
+
+:EducationalTraining rdf:type owl:Class ;
+                     
+                     rdfs:label "Educational Training"@en-us ;
+                     
+                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                       owl:onProperty :supplementalInformation ;
+                                       owl:allValuesFrom xsd:string
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :dateTimeInterval ;
+                                       owl:allValuesFrom :DateTimeInterval
+                                     ] ;
+                     
+                     vitro:exampleAnnot "Currently any abstract name is given to individuals of this class. This could change in the future."^^xsd:string ;
+                     
+                     vitro:shortDef "Represents educational training that has been received."^^xsd:string ;
+                     
+                     vitro:descriptionAnnot "This connects person to their academic degree through this educational training, but can also be used when the training does not result in a degree."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#EmeritusFaculty
+
+:EmeritusFaculty rdf:type owl:Class ;
+                 
+                 rdfs:label "Faculty Member Emeritus"@en-us ;
+                 
+                 rdfs:subClassOf foaf:Person ;
+                 
+                 vitro:shortDef "A retired faculty member who has retained their rank, title and privileges."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#EmeritusLibrarian
+
+:EmeritusLibrarian rdf:type owl:Class ;
+                   
+                   rdfs:label "Librarian Emeritus"@en-us ;
+                   
+                   rdfs:subClassOf foaf:Person ;
+                   
+                   vitro:shortDef "A retired librarian who has retained their rank, title and privileges."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#EmeritusProfessor
+
+:EmeritusProfessor rdf:type owl:Class ;
+                   
+                   rdfs:label "Professor Emeritus"@en-us ;
+                   
+                   rdfs:subClassOf :EmeritusFaculty ,
+                                   foaf:Person ;
+                   
+                   vitro:shortDef "A retired professor who has retained their rank, title and privileges."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Equipment
+
+:Equipment rdf:type owl:Class ;
+           
+           rdfs:label "Equipment"@en-us ;
+           
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :freetextKeyword ;
+                             owl:allValuesFrom rdfs:Literal
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :webpage ;
+                             owl:allValuesFrom :URLLink
+                           ] ;
+           
+           vitro:descriptionAnnot "A network server is one example. Medical schools and research laboratories can list professional equipment, such as microscopes."^^xsd:string ;
+           
+           vitro:shortDef "A physical object provided for specific purpose, task or occupation. "^^xsd:string ;
+           
+           vitro:exampleAnnot "server; Bruker Vector-33 FT-IR"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#EventSeries
+
+:EventSeries rdf:type owl:Class ;
+             
+             rdfs:label "Event Series"@en-us ;
+             
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty :domesticGeographicFocus ;
+                               owl:allValuesFrom :GeographicRegion
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :geographicFocus ;
+                               owl:allValuesFrom :GeographicRegion
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :realizedRole ;
+                               owl:allValuesFrom :Role
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :description ;
+                               owl:allValuesFrom rdfs:Literal
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :dateTimeInterval ;
+                               owl:allValuesFrom :DateTimeInterval
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :internationalGeographicFocus ;
+                               owl:allValuesFrom :GeographicRegion
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasSubjectArea ;
+                               owl:allValuesFrom owl:Thing
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :contactInformation ;
+                               owl:allValuesFrom rdfs:Literal
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :webpage ;
+                               owl:allValuesFrom :URLLink
+                             ] ;
+             
+             vitro:descriptionAnnot "A generic class which may include a conference series, a course section, a seminar series, or a workshop series. When possible, use one of these more specific classes."^^xsd:string ;
+             
+             vitro:exampleAnnot "Only use if no specific subclasses of core:EventSeries desribe the activity."^^xsd:string ;
+             
+             vitro:shortDef "Two or more events that occur at different times and are connected to each other."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Exhibit
+
+:Exhibit rdf:type owl:Class ;
+         
+         rdfs:label "Exhibit"@en-us ;
+         
+         rdfs:subClassOf event:Event ;
+         
+         vitro:shortDef "The showing of an object or a collection of objects, in an organized manner."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ExtensionUnit
+
+:ExtensionUnit rdf:type owl:Class ;
+               
+               rdfs:label "Extension Unit"@en-us ;
+               
+               rdfs:subClassOf foaf:Organization ;
+               
+               vitro:shortDef "A unit devoted primarily to extension activities, whether for outreach or research."^^xsd:string ;
+               
+               vitro:exampleAnnot "Alachua County Extension Office"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#F1000Link
+
+:F1000Link rdf:type owl:Class ;
+           
+           rdfs:label "F1000 Link"@en-us ;
+           
+           rdfs:subClassOf :URLLink ;
+           
+           vitro:descriptionAnnot "F1000, is a place where faculty go to critique papers published in PubMed. Any given record in F1000 might have anywhere from one to dozens of reviews."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Facility
+
+:Facility rdf:type owl:Class ;
+          
+          rdfs:label "Facility"@en-us ;
+          
+          rdfs:subClassOf :GeographicLocation ;
+          
+          vitro:descriptionAnnot "Distinct from the organization that runs it; e.g., a laboratory may be an organization but may be run by another organization and only consist of facilities housing equipment or services. Can be a building or place that provides a particular service or is used for a particular activity. Use the specific Building or Room whenever possible. Short definition from http://dictionary.reference.com/browse/facility."^^xsd:string ;
+          
+          vitro:shortDef "Something designed, built, installed, etc., to serve a specific function or activity affording a convenience or service."^^xsd:string ;
+          
+          vitro:exampleAnnot "Use subclasses of core:Facility subclasses instead of this class if possible"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#FacultyAdministrativePosition
+
+:FacultyAdministrativePosition rdf:type owl:Class ;
+                               
+                               rdfs:label "Faculty Administrative Position"@en-us ;
+                               
+                               rdfs:subClassOf :Position ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :positionForPerson ;
+                                                 owl:allValuesFrom :FacultyMember
+                                               ] ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :positionInOrganization ;
+                                                 owl:allValuesFrom foaf:Organization
+                                               ] ;
+                               
+                               vitro:shortDef "An academic administrative position (associate dean, etc.) as distinct from a professional administrative position (non-academic)"^^xsd:string ;
+                               
+                               vitro:exampleAnnot "Associate Dean"^^xsd:string ;
+                               
+                               vitro:descriptionAnnot "That is a position held by an academic faculty member who works for administration."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#FacultyMember
+
+:FacultyMember rdf:type owl:Class ;
+               
+               rdfs:label "Faculty Member"@en-us ;
+               
+               rdfs:subClassOf foaf:Person ;
+               
+               vitro:shortDef "A person with at least one academic appointment to a specific faculty of a university or institution of higher learning."^^xsd:string ;
+               
+               vitro:descriptionAnnot "Definition from here: http://research.carleton.ca/htr/defs.php."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#FacultyMentoringRelationship
+
+:FacultyMentoringRelationship rdf:type owl:Class ;
+                              
+                              rdfs:label "Faculty Mentoring Relationship"@en-us ;
+                              
+                              rdfs:subClassOf :AdvisingRelationship ;
+                              
+                              vitro:shortDef "An advisory relationship in which one faculty member mentors another faculty member."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#FacultyPosition
+
+:FacultyPosition rdf:type owl:Class ;
+                 
+                 rdfs:label "Faculty Position"@en-us ;
+                 
+                 rdfs:subClassOf :Position ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :positionInOrganization ;
+                                   owl:allValuesFrom foaf:Organization
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :positionForPerson ;
+                                   owl:allValuesFrom :FacultyMember
+                                 ] ;
+                 
+                 vitro:shortDef "Academic position in a university or institution"^^xsd:string ;
+                 
+                 vitro:descriptionAnnot "Professor, associate professor and assistant professor are common positions for academic faculty."^^xsd:string ;
+                 
+                 vitro:exampleAnnot "Professor; Associate Professor; Assistant Professor"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Foundation
+
+:Foundation rdf:type owl:Class ;
+            
+            rdfs:label "Foundation"@en-us ;
+            
+            rdfs:subClassOf foaf:Organization ;
+            
+            vitro:shortDef "An institution financed by a donation or legacy to aid research, education, the arts, etc. "^^xsd:string ;
+            
+            vitro:descriptionAnnot "Definition take from: http://dictionary.reference.com/browse/foundation."^^xsd:string ;
+            
+            vitro:exampleAnnot "The Ford Foundation"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#FundingOrganization
+
+:FundingOrganization rdf:type owl:Class ;
+                     
+                     rdfs:label "Funding Organization"@en-us ;
+                     
+                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                           owl:onProperty :awardsGrant ;
+                                           owl:someValuesFrom :Grant
+                                         ] ;
+                     
+                     rdfs:subClassOf foaf:Organization ;
+                     
+                     vitro:shortDef "A defined class of organizations that fund Grants."^^xsd:string ;
+                     
+                     vitro:exampleAnnot "National Institute of Health (NIH)"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#GeographicLocation
+
+:GeographicLocation rdf:type owl:Class ;
+                    
+                    rdfs:label "Geographic Location"@en-us ;
+                    
+                    rdfs:subClassOf :Location ;
+                    
+                    vitro:shortDef "A location having coordinates in geographic space."^^xsd:string ;
+                    
+                    vitro:descriptionAnnot "Removed the word \"stable\" because disputed territories from geopolitical.owl are included. This could imply that the geographic coordinates could change. I've also copied this definition to core:Geographic Location.  I think core:Geographic Location and core:Geographic Region are both the same and only one is needed. There is also geopolitical.owl:geographical_region which further causes confusion."^^xsd:string ;
+                    
+                    vitro:exampleAnnot "Use subclasses of core:Geographic Location subclasses instead of this class if possible."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#GeographicRegion
+
+:GeographicRegion rdf:type owl:Class ;
+                  
+                  rdfs:label "Geographic Region"@en-us ;
+                  
+                  rdfs:subClassOf :GeographicLocation ;
+                  
+                  vitro:shortDef "A location having coordinates in geographic space."^^xsd:string ;
+                  
+                  vitro:descriptionAnnot "Removed the word \"stable\" because disputed territories from geopolitical.owl are included. This could imply that the geographic coordinates could change. This definition was originally in core:Geographic Location.  I simply copied the definition from there.  I think core:Geographic Location and core:Geographic Region are both the same and only one is needed. There is also geopolitical.owl:geographical_region which further causes confusion."^^xsd:string ;
+                  
+                  vitro:exampleAnnot "Use subclasses of core:Geographic Region subclasses instead of this class if possible."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#GeopoliticalEntity
+
+:GeopoliticalEntity rdf:type owl:Class ;
+                    
+                    rdfs:label "Geopolitical Entity"@en-us ;
+                    
+                    rdfs:subClassOf :GeographicRegion ;
+                    
+                    vitro:shortDef "A geographical area which is associated with some sort of political  structure."^^xsd:string ;
+                    
+                    vitro:descriptionAnnot "Short definition obtained here: http://en.wiktionary.org/wiki/geopolitical_entity."^^xsd:string ;
+                    
+                    vitro:exampleAnnot "Use subclasses of core:GeopoliticalEntity subclasses instead of this class if possible."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#GovernmentAgency
+
+:GovernmentAgency rdf:type owl:Class ;
+                  
+                  rdfs:label "Government Agency"@en-us ;
+                  
+                  rdfs:subClassOf foaf:Organization ;
+                  
+                  vitro:shortDef "A government agency is a permanent or semi-permanent organization in the machinery of government that is responsible for the oversight and administration of specific functions."^^xsd:string ;
+                  
+                  vitro:descriptionAnnot "Definition take from: http://en.wikipedia.org/wiki/Government_agency."^^xsd:string ;
+                  
+                  vitro:exampleAnnot "United States Library of Congress"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#GraduateAdvisingRelationship
+
+:GraduateAdvisingRelationship rdf:type owl:Class ;
+                              
+                              rdfs:label "Graduate Advising Relationship"@en-us ;
+                              
+                              rdfs:subClassOf :AdvisingRelationship ;
+                              
+                              vitro:shortDef "An advisory relationship in which a professor advises a graduate student."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#GraduateStudent
+
+:GraduateStudent rdf:type owl:Class ;
+                 
+                 rdfs:label "Graduate Student"@en-us ;
+                 
+                 rdfs:subClassOf :Student ;
+                 
+                 vitro:shortDef "A person who has already received a bachelor's degree and is working toward a Master's or Doctoral degree."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Grant
+
+:Grant rdf:type owl:Class ;
+       
+       rdfs:label "Grant"@en-us ;
+       
+       rdfs:subClassOf :Agreement ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :supportedInformationResource ;
+                         owl:allValuesFrom :InformationResource
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty bibo:abstract ;
+                         owl:allValuesFrom rdfs:Literal
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :webpage ;
+                         owl:allValuesFrom :URLLink
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :grantAwardedBy ;
+                         owl:allValuesFrom foaf:Organization
+                       ] ;
+       
+       vitro:exampleAnnot "An intramural or extramural award to support scholarly work, such as UF09179 (VIVO)"^^xsd:string ;
+       
+       vitro:shortDef "Financial assistance mechanism providing money, property, or both to an eligible entity to carry out an approved project or activity"^^xsd:string ;
+       
+       vitro:descriptionAnnot "Short definition is from the Glossary of NIH Terms."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Hospital
+
+:Hospital rdf:type owl:Class ;
+          
+          rdfs:label "Hospital"@en-us ;
+          
+          rdfs:subClassOf foaf:Organization ;
+          
+          vitro:shortDef "An institution that provides medical, surgical, or psychiatric care and treatment for the sick or the injured."^^xsd:string ;
+          
+          vitro:descriptionAnnot "Definition take from: http://dictionary.reference.com/browse/hospital."^^xsd:string ;
+          
+          vitro:exampleAnnot "Shands at the University of Florida"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#InformationResource
+
+:InformationResource rdf:type owl:Class ;
+                     
+                     rdfs:label "Information Resource"@en-us ;
+                     
+                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                       owl:onProperty :dateTimeValue ;
+                                       owl:allValuesFrom :DateTimeValue
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :domesticGeographicFocus ;
+                                       owl:allValuesFrom :GeographicRegion
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :webpage ;
+                                       owl:allValuesFrom :URLLink
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :freetextKeyword ;
+                                       owl:allValuesFrom rdfs:Literal
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasSubjectArea ;
+                                       owl:allValuesFrom owl:Thing
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :internationalGeographicFocus ;
+                                       owl:allValuesFrom :GeographicRegion
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :geographicFocus ;
+                                       owl:allValuesFrom :GeographicRegion
+                                     ] ;
+                     
+                     vitro:shortDef "The most general classification of an information resource"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Institute
+
+:Institute rdf:type owl:Class ;
+           
+           rdfs:label "Institute"@en-us ;
+           
+           rdfs:subClassOf foaf:Organization ;
+           
+           vitro:shortDef "An Institute normally has a research focus but may also fulfill instructional or outreach roles."^^xsd:string ;
+           
+           vitro:exampleAnnot "Institute for Fundamental Theory"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Internship
+
+:Internship rdf:type owl:Class ;
+            
+            rdfs:label "Internship"@en-us ;
+            
+            rdfs:subClassOf :EducationalTraining ;
+            
+            vitro:shortDef "Typically a student or a recent graduate undergoing supervised practical training."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#InvestigatorRole
+
+:InvestigatorRole rdf:type owl:Class ;
+                  
+                  rdfs:label "Investigator Role"@en-us ;
+                  
+                  rdfs:subClassOf :ResearcherRole ;
+                  
+                  vitro:shortDef "A role in an Agreement (for example, a grant) as a named investigator or key personnel."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#InvitedTalk
+
+:InvitedTalk rdf:type owl:Class ;
+             
+             rdfs:label "Invited Talk"@en-us ;
+             
+             rdfs:subClassOf :Presentation .
+
+
+
+###  http://vivoweb.org/ontology/core#IssuedCredential
+
+:IssuedCredential rdf:type owl:Class ;
+                  
+                  rdfs:label "Issued Credential"@en-us ;
+                  
+                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty :dateIssued ;
+                                    owl:allValuesFrom :DateTimeValue
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :validIn ;
+                                    owl:allValuesFrom :GeographicLocation
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasSubjectArea ;
+                                    owl:allValuesFrom owl:Thing
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :expirationDate ;
+                                    owl:allValuesFrom :DateTimeValue
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :description ;
+                                    owl:allValuesFrom rdfs:Literal
+                                  ] .
+
+
+
+###  http://vivoweb.org/ontology/core#Laboratory
+
+:Laboratory rdf:type owl:Class ;
+            
+            rdfs:label "Laboratory"@en-us ;
+            
+            rdfs:subClassOf foaf:Organization ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :providesService ;
+                              owl:allValuesFrom :Service
+                            ] ;
+            
+            vitro:shortDef "An organizational unit (as opposed to the physical facility) that performs research, provides services, or processes materials"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#LeaderRole
+
+:LeaderRole rdf:type owl:Class ;
+            
+            rdfs:label "Leader Role"@en-us ;
+            
+            rdfs:subClassOf :Role ;
+            
+            vitro:descriptionAnnot "A broad-ranging leader concept, from leading a small temporary committee to head of a large international organization."^^xsd:string ;
+            
+            vitro:shortDef "A leadership role"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Librarian
+
+:Librarian rdf:type owl:Class ;
+           
+           rdfs:label "Librarian"@en-us ;
+           
+           rdfs:subClassOf foaf:Person ;
+           
+           vitro:shortDef "A person working in a position of librarian or information professional, or academic or technical expert in support of providing information services or materials."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#LibrarianPosition
+
+:LibrarianPosition rdf:type owl:Class ;
+                   
+                   rdfs:label "Librarian Position"@en-us ;
+                   
+                   rdfs:subClassOf :Position ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :positionForPerson ;
+                                     owl:allValuesFrom :Librarian
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :positionInOrganization ;
+                                     owl:allValuesFrom foaf:Organization
+                                   ] ;
+                   
+                   vitro:shortDef "A position held  by library and information science professionals, or academic or technical experts, in support of providing information services or materials"^^xsd:string ;
+                   
+                   vitro:descriptionAnnot "It is the common position in libraries."^^xsd:string ;
+                   
+                   vitro:exampleAnnot "Librarian; Library Systems Analyst; Music Bibliographer"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Library
+
+:Library rdf:type owl:Class ;
+         
+         rdfs:label "Library"@en-us ;
+         
+         rdfs:subClassOf foaf:Organization ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :administers ;
+                           owl:allValuesFrom :Grant
+                         ] ;
+         
+         vitro:shortDef "A collection of any materials, for study and enjoyment, which has been systematically arranged."^^xsd:string ;
+         
+         vitro:exampleAnnot "Marston Science Library"^^xsd:string ;
+         
+         vitro:descriptionAnnot "Used information from this definition: http://dictionary.reference.com/browse/library."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#License
+
+:License rdf:type owl:Class ;
+         
+         rdfs:label "License"@en-us ;
+         
+         rdfs:subClassOf :Credential ;
+         
+         vitro:descriptionAnnot "Licenses are usually issued in order to regulate some activity that is deemed to be dangerous or a threat to the person or the public or which involves a high level of specialized skill.  See also core:Licensure."^^xsd:string ;
+         
+         vitro:shortDef "Official or legal permission to do something"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Licensure
+
+:Licensure rdf:type owl:Class ;
+           
+           rdfs:label "Licensure"@en-us ;
+           
+           rdfs:subClassOf :IssuedCredential ;
+           
+           vitro:shortDef "A granted license, which gives a 'permission to practice.'"^^xsd:string ;
+           
+           vitro:descriptionAnnot "A granted license, which gives a 'permission to practice.' Such licenses are usually issued in order to regulate some activity that is deemed to be dangerous or a threat to the person or the public or which involves a high level of specialized skill.  See also core:License."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Location
+
+:Location rdf:type owl:Class ;
+          
+          rdfs:label "Location"@en-us ;
+          
+          vitro:descriptionAnnot "It's anticipated that the subclasses will be used when classifying items. And, all locations can be viewable via this class."^^xsd:string ;
+          
+          vitro:shortDef "Top level of all location classes."^^xsd:string ;
+          
+          vitro:exampleAnnot "Use subclasses of core:Location when classsifying items."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#MedicalResidency
+
+:MedicalResidency rdf:type owl:Class ;
+                  
+                  rdfs:label "Medical Residency"@en-us ;
+                  
+                  rdfs:subClassOf :EducationalTraining ;
+                  
+                  vitro:shortDef "Residency is a stage of graduate medical training. "^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Meeting
+
+:Meeting rdf:type owl:Class ;
+         
+         rdfs:label "Meeting"@en-us ;
+         
+         rdfs:subClassOf event:Event ;
+         
+         vitro:shortDef "A gathering of people for a defined purpose, not necessarily public or announced"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#MemberRole
+
+:MemberRole rdf:type owl:Class ;
+            
+            rdfs:label "Member Role"@en-us ;
+            
+            rdfs:subClassOf :Role ;
+            
+            vitro:shortDef "A role of being a member in a Process or an Organization"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Museum
+
+:Museum rdf:type owl:Class ;
+        
+        rdfs:label "Museum"@en-us ;
+        
+        rdfs:subClassOf foaf:Organization ;
+        
+        vitro:shortDef "A building or place where works of art, scientific specimens, or other objects of permanent value are kept and displayed."^^xsd:string ;
+        
+        vitro:descriptionAnnot "Definition was take from here:  http://dictionary.reference.com/browse/museum"^^xsd:string ;
+        
+        vitro:exampleAnnot "The Getty Museum"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#NewsRelease
+
+:NewsRelease rdf:type owl:Class ;
+             
+             rdfs:label "News Release"@en-us ;
+             
+             rdfs:subClassOf bibo:Document ;
+             
+             vitro:shortDef "A short written piece focused on an event or announcement of note, having a defined publication time and of less enduring interest than a news feature."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Newsletter
+
+:Newsletter rdf:type owl:Class ;
+            
+            rdfs:label "Newsletter"@en-us ;
+            
+            rdfs:subClassOf bibo:Periodical ;
+            
+            vitro:exampleAnnot "The Ornithological Newsletter"^^xsd:string ;
+            
+            vitro:shortDef "Usually issued periodically, prepared by or for a group or institution to present information to a specific audience, often also made available to the press and public"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#NonAcademic
+
+:NonAcademic rdf:type owl:Class ;
+             
+             rdfs:label "Non-Academic"@en-us ;
+             
+             rdfs:subClassOf foaf:Person ;
+             
+             vitro:shortDef "A person holding a position that is not considered to be an academic appointment."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#NonAcademicPosition
+
+:NonAcademicPosition rdf:type owl:Class ;
+                     
+                     rdfs:label "Non-Academic Position"@en-us ;
+                     
+                     rdfs:subClassOf :Position ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :positionForPerson ;
+                                       owl:allValuesFrom :NonAcademic
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :positionInOrganization ;
+                                       owl:allValuesFrom foaf:Organization
+                                     ] ;
+                     
+                     vitro:shortDef "A position classified as professional, staff, support, or any other non-academic role"^^xsd:string ;
+                     
+                     vitro:exampleAnnot "Accounting & Research Services Assistant; Director of Information Technology"^^xsd:string ;
+                     
+                     vitro:descriptionAnnot "Staff, support, and other non-academic positions."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#NonFacultyAcademic
+
+:NonFacultyAcademic rdf:type owl:Class ;
+                    
+                    rdfs:label "Non-Faculty Academic"@en-us ;
+                    
+                    rdfs:subClassOf foaf:Person ;
+                    
+                    vitro:shortDef "A person not considered a faculty member but holding an academic appointment."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#NonFacultyAcademicPosition
+
+:NonFacultyAcademicPosition rdf:type owl:Class ;
+                            
+                            rdfs:label "Non-Faculty Academic Position"@en-us ;
+                            
+                            rdfs:subClassOf :Position ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :positionForPerson ;
+                                              owl:allValuesFrom :NonFacultyAcademic
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :positionInOrganization ;
+                                              owl:allValuesFrom foaf:Organization
+                                            ] ;
+                            
+                            vitro:shortDef "A position involving academic work but without faculty status"^^xsd:string ;
+                            
+                            vitro:exampleAnnot "Researcher; Academic Extension Associate; Postdoctoral Associate"^^xsd:string ;
+                            
+                            vitro:descriptionAnnot "Those positions are held by people who do academic work but do not have faculty positions in universities or institutes."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#OrganizerRole
+
+:OrganizerRole rdf:type owl:Class ;
+               
+               rdfs:label "Organizer Role"@en-us ;
+               
+               rdfs:subClassOf :Role ;
+               
+               vitro:shortDef "A role of organizing"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#OutreachProviderRole
+
+:OutreachProviderRole rdf:type owl:Class ;
+                      
+                      rdfs:label "Outreach Provider Role"@en-us ;
+                      
+                      rdfs:subClassOf :Role ;
+                      
+                      vitro:shortDef "An outreach or community service role directed outside a person's primary profession and institution"^^xsd:string ;
+                      
+                      vitro:exampleAnnot "Communicating Astronomy to the Public"^^xsd:string ;
+                      
+                      vitro:descriptionAnnot "The example is one outreach role required by US space agency NASA, which is related with one project in NASA. Name of the outreach role should be put here."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#PeerReviewerRole
+
+:PeerReviewerRole rdf:type owl:Class ;
+                  
+                  rdfs:label "Peer Reviewer Role"@en-us ;
+                  
+                  rdfs:subClassOf :ReviewerRole ;
+                  
+                  vitro:shortDef "A role of peer reviewing"^^xsd:string ;
+                  
+                  vitro:descriptionAnnot """is a generic term for a process of self-regulation by a profession or a process of evaluation involving qualified individuals within the relevant field. Peer review methods are employed to maintain standards, improve performance and provide credibility. In academia  the term is often used to denote a prepublication review of academic papers; reviewing an academic paper is often called refereeing.
+Contents
+[hide]"""^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#PopulatedPlace
+
+:PopulatedPlace rdf:type owl:Class ;
+                
+                rdfs:label "Populated Place"@en-us ;
+                
+                rdfs:subClassOf :GeopoliticalEntity ;
+                
+                vitro:shortDef "Either city or town - a thickly populated area having fixed boundaries and certain local powers of government."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Position
+
+:Position rdf:type owl:Class ;
+          
+          rdfs:label "Position"@en-us ;
+          
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :email ;
+                            owl:allValuesFrom rdfs:Literal
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :dateTimeInterval ;
+                            owl:allValuesFrom :DateTimeInterval
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :rank ;
+                            owl:allValuesFrom xsd:int
+                          ] ;
+          
+          vitro:descriptionAnnot "An employment activity, whether compensated or not. Short definition comes from http://en.wikipedia.org/wiki/Position, and has been modified."^^xsd:string ;
+          
+          vitro:exampleAnnot "Director of Admissions and Placement; Associate University Librarian"^^xsd:string ;
+          
+          vitro:shortDef "Particular position in an organization, commonly identified by job title, and normally associated with a job description that details the tasks and responsibilities that go with the position."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Postdoc
+
+:Postdoc rdf:type owl:Class ;
+         
+         rdfs:label "Postdoc"@en-us ;
+         
+         rdfs:subClassOf :NonFacultyAcademic ;
+         
+         vitro:shortDef "A Person holding an academic employment appointment focused on research rather than teaching; temporary (or for some defined term)"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#PostdocOrFellowAdvisingRelationship
+
+:PostdocOrFellowAdvisingRelationship rdf:type owl:Class ;
+                                     
+                                     rdfs:label "Postdoc or Fellow Advising Relationship"@en-us ;
+                                     
+                                     rdfs:subClassOf :AdvisingRelationship ;
+                                     
+                                     vitro:shortDef "An advisory relationship in which the advisee is a Postdoc or Fellow."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#PostdocPosition
+
+:PostdocPosition rdf:type owl:Class ;
+                 
+                 rdfs:label "Postdoctoral Position"@en-us ;
+                 
+                 rdfs:subClassOf :NonFacultyAcademicPosition ;
+                 
+                 vitro:shortDef "A postdoctoral training appointment (job)"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#PostdoctoralTraining
+
+:PostdoctoralTraining rdf:type owl:Class ;
+                      
+                      rdfs:label "Postdoctoral Training"@en-us ;
+                      
+                      rdfs:subClassOf :EducationalTraining ;
+                      
+                      vitro:shortDef "Postdoctoral research is academic or scholarly research conducted by a person who has completed his or her doctoral studies, normally within the following five years. It is intended to further deepen expertise in a specialist subject."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Presentation
+
+:Presentation rdf:type owl:Class ;
+              
+              rdfs:label "Presentation"@en-us ;
+              
+              rdfs:subClassOf event:Event ;
+              
+              vitro:shortDef "Encompasses talk, speech, lecture, slide lecture, conference presentation"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#PresenterRole
+
+:PresenterRole rdf:type owl:Class ;
+               
+               rdfs:label "Presenter Role"@en-us ;
+               
+               rdfs:subClassOf :Role ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :presenterRoleOf ;
+                                 owl:allValuesFrom foaf:Person
+                               ] ;
+               
+               vitro:shortDef "A role of presenting information"^^xsd:string ;
+               
+               vitro:descriptionAnnot "Are we assuming that a PresenterRole is in a Presentation?  Or could you have a PresenterRole in, say, a committee?"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#PrimaryPosition
+
+:PrimaryPosition rdf:type owl:Class ;
+                 
+                 rdfs:label "Primary Position"@en-us ;
+                 
+                 rdfs:subClassOf :Position ;
+                 
+                 vitro:descriptionAnnot "A position designated as primary by the organization or group where it is held. This designation may be applied to zero or more of an agent's positions and may be asserted in conjunction with other subclasses of position."^^xsd:string ;
+                 
+                 vitro:shortDef "A position designated as primary by the organization where it is held."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#PrincipalInvestigatorRole
+
+:PrincipalInvestigatorRole rdf:type owl:Class ;
+                           
+                           rdfs:label "Principal Investigator Role"@en-us ;
+                           
+                           rdfs:subClassOf :InvestigatorRole ;
+                           
+                           vitro:shortDef "Role of a person to direct a project or activity being supported by an Agreement (for example, a grant), and who is accountable to the grantee for the proper conduct of the project or activity. Also known as Program Director or Project Director."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#PrivateCompany
+
+:PrivateCompany rdf:type owl:Class ;
+                
+                rdfs:label "Private Company"@en-us ;
+                
+                rdfs:subClassOf :Company ;
+                
+                vitro:shortDef "A private company is one that is privately-owned, and thus, is not publicly-traded in the stock market. Members of the general public cannot purchase stock in a private company unless that company chooses to go public and become a public company."^^xsd:string ;
+                
+                vitro:descriptionAnnot "Definition obtained here: http://answers.ask.com/Business/Finance/what_is_a_private_company.  Examples of private companies found here: http://www.forbes.com/2008/11/03/largest-private-companies-biz-privates08-cx_sr_1103private_land.html"^^xsd:string ;
+                
+                vitro:exampleAnnot "Publix Super Markets; Ernst & Young; PricewaterhouseCoopers"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Program
+
+:Program rdf:type owl:Class ;
+         
+         rdfs:label "Program"@en-us ;
+         
+         rdfs:subClassOf foaf:Organization ;
+         
+         vitro:exampleAnnot "A Cornell graduate field (http://vivo.cornell.edu/index.jsp?home=65535&collection=820)"^^xsd:string ;
+         
+         vitro:shortDef "An ongoing academic initiative not formalized with department or division status."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Project
+
+:Project rdf:type owl:Class ;
+         
+         rdfs:label "Project"@en-us ;
+         
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :contactInformation ;
+                           owl:allValuesFrom rdfs:Literal
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :geographicFocus ;
+                           owl:allValuesFrom :GeographicRegion
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :realizedRole ;
+                           owl:allValuesFrom :Role
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :dateTimeInterval ;
+                           owl:allValuesFrom :DateTimeInterval
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasFundingVehicle ;
+                           owl:allValuesFrom :Agreement
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :informationProduct ;
+                           owl:allValuesFrom :InformationResource
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :description ;
+                           owl:allValuesFrom rdfs:Literal
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :webpage ;
+                           owl:allValuesFrom :URLLink
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :domesticGeographicFocus ;
+                           owl:allValuesFrom :GeographicRegion
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :internationalGeographicFocus ;
+                           owl:allValuesFrom :GeographicRegion
+                         ] ;
+         
+         vitro:shortDef "An endeavor, frequently collaborative, that occurs over a finite period of time and is intended to achieve a particular aim."^^xsd:string ;
+         
+         vitro:descriptionAnnot """An endeavor, frequently collaborative, that occurs over a finite period of time and is intended to achieve a particular aim.
+"""^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Publisher
+
+:Publisher rdf:type owl:Class ;
+           
+           rdfs:label "Publisher"@en-us ;
+           
+           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                 owl:onProperty :publisherOf ;
+                                 owl:someValuesFrom bibo:Document
+                               ] ;
+           
+           rdfs:subClassOf foaf:Organization ;
+           
+           vitro:shortDef "A person or company whose business is the publishing of books, periodicals, engravings, computer software, etc."^^xsd:string ;
+           
+           vitro:descriptionAnnot "Definition found here: http://dictionary.reference.com/browse/publisher"^^xsd:string ;
+           
+           vitro:exampleAnnot "Elsevier; Harper & Row; Indiana University Press"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Relationship
+
+:Relationship rdf:type owl:Class ;
+              
+              rdfs:label "Relationship"@en-us ;
+              
+              vitro:shortDef "a reified relationship"^^xsd:string ;
+              
+              vitro:descriptionAnnot "functions as an n-ary predicate"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ResearchOrganization
+
+:ResearchOrganization rdf:type owl:Class ;
+                      
+                      rdfs:label "Research Organization"@en-us ;
+                      
+                      rdfs:subClassOf foaf:Organization ;
+                      
+                      vitro:shortDef "Any organization (likely also asserted as another class of Organization) with a primary, ongoing research function, not just through occasional roles"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ResearchProposal
+
+:ResearchProposal rdf:type owl:Class ;
+                  
+                  rdfs:label "Research Proposal"@en-us ;
+                  
+                  rdfs:subClassOf bibo:Document ;
+                  
+                  vitro:shortDef "A proposal for a research grant that has been submitted but not approved; does not represent an existing activity"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ResearcherRole
+
+:ResearcherRole rdf:type owl:Class ;
+                
+                rdfs:label "Researcher Role"@en-us ;
+                
+                rdfs:subClassOf :Role ;
+                
+                vitro:shortDef "A role of conducting funded or unfunded research,  sometimes linked to an Agreement."^^xsd:string ;
+                
+                vitro:descriptionAnnot "Examples of research can be seen at: http://www.ufl.edu/research/products/index.html.  Note these may have been funded, but the research doesn't have to be funded.  Also, the research may be linked to an Agreement (for example, a Grant), but does not need to be."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Review
+
+:Review rdf:type owl:Class ;
+        
+        rdfs:label "Review"@en-us ;
+        
+        rdfs:subClassOf bibo:Article ;
+        
+        vitro:shortDef "An article reviewing one or more other information resources (a book, one or more other articles, movies, etc)"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ReviewerRole
+
+:ReviewerRole rdf:type owl:Class ;
+              
+              rdfs:label "Reviewer Role"@en-us ;
+              
+              rdfs:subClassOf :Role ;
+              
+              vitro:descriptionAnnot "A role that encompasses both ongoing reviewer responsibility for a bibo:Collection, such as a Journal or Series, and also a review performed for a bibo:Document, such as a book, academic article or conference paper."^^xsd:string ;
+              
+              vitro:shortDef "A role that encompasses both ongoing reviewer responsibility for a bibo:Collection, such as a Journal or Series, and also a review performed for a bibo:Document, such as a book, academic article or conference paper."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Role
+
+:Role rdf:type owl:Class ;
+      
+      rdfs:label "Role"@en-us ;
+      
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :dateTimeInterval ;
+                        owl:allValuesFrom :DateTimeInterval
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hideFromDisplay ;
+                        owl:allValuesFrom xsd:boolean
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :description ;
+                        owl:allValuesFrom rdfs:Literal
+                      ] ;
+      
+      vitro:shortDef "A person's, group's or organization's role in an endeavor"^^xsd:string ;
+      
+      vitro:exampleAnnot "Only use if no specific subclasses of core:Role describe the role."^^xsd:string ;
+      
+      vitro:descriptionAnnot "Only use this broad role class if no subclasses of role describe the item being classified."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Room
+
+:Room rdf:type owl:Class ;
+      
+      rdfs:label "Room"@en-us ;
+      
+      rdfs:subClassOf :Facility ;
+      
+      vitro:exampleAnnot "100 Caldwell Hall; 114 Martha Van Rensselaer (Rushmore Conference Room)"^^xsd:string ;
+      
+      vitro:descriptionAnnot "Enter room number of name."^^xsd:string ;
+      
+      vitro:shortDef "Room that provides a particular service or is used for a particular activity."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#School
+
+:School rdf:type owl:Class ;
+        
+        rdfs:label "School"@en-us ;
+        
+        rdfs:subClassOf foaf:Organization ;
+        
+        vitro:shortDef "An institution for instruction in a particular skill or field."^^xsd:string ;
+        
+        vitro:descriptionAnnot "Definition take from here: http://dictionary.reference.com/browse/school."^^xsd:string ;
+        
+        vitro:exampleAnnot "School of Architecture; School of Music"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Score
+
+:Score rdf:type owl:Class ;
+       
+       rdfs:label "Score"@en-us ;
+       
+       rdfs:subClassOf bibo:Document ;
+       
+       vitro:shortDef "Written musical composition for voice or instruments or both"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Screenplay
+
+:Screenplay rdf:type owl:Class ;
+            
+            rdfs:label "Screenplay"@en-us ;
+            
+            rdfs:subClassOf bibo:Document ;
+            
+            vitro:shortDef "Written script for a film production, including dialogue and descriptions of gestures, actions, shooting directions"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#SeminarSeries
+
+:SeminarSeries rdf:type owl:Class ;
+               
+               rdfs:label "Seminar Series"@en-us ;
+               
+               rdfs:subClassOf :EventSeries ;
+               
+               vitro:shortDef "An organized series of a meeting for an exchange of ideas, typically put on by a department or center."^^xsd:string ;
+               
+               vitro:exampleAnnot "Applied Microeconomics Seminars; Future of Rural New York Seminar Series"^^xsd:string ;
+               
+               vitro:descriptionAnnot "For individual seminars, use seminar instead.  core:ConferenceSeries and core:SeminarSeries are very similar."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Service
+
+:Service rdf:type owl:Class ;
+         
+         rdfs:label "Service"@en-us ;
+         
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :webpage ;
+                           owl:allValuesFrom :URLLink
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :contributingRole ;
+                           owl:allValuesFrom :Role
+                         ] ;
+         
+         vitro:shortDef "A regularly offered service in support of an academic, research, or administrative function (not personal or professional service by an individual)"^^xsd:string ;
+         
+         vitro:exampleAnnot "UITS service"^^xsd:string ;
+         
+         vitro:descriptionAnnot "UITS service is the information technology services provided by Indiana University. SC. "^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ServiceProviderRole
+
+:ServiceProviderRole rdf:type owl:Class ;
+                     
+                     rdfs:label "Service Provider Role"@en-us ;
+                     
+                     rdfs:subClassOf :Role ;
+                     
+                     vitro:shortDef "An role of an individual within his or her profession or institution; use outreach provider role for community service or other activities outside the profession."^^xsd:string ;
+                     
+                     vitro:exampleAnnot "Member of the International Conference on Complex Systems Organizing Committee"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#ServiceProvidingLaboratory
+
+:ServiceProvidingLaboratory rdf:type owl:Class ;
+                            
+                            rdfs:label "Service Providing Lab"@en-us ;
+                            
+                            rdfs:subClassOf :Laboratory ;
+                            
+                            vitro:shortDef "A laboratory that provides services"^^xsd:string ;
+                            
+                            vitro:descriptionAnnot "Ideally a defined class -- a Laboratory the provides some Service via the property"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Software
+
+:Software rdf:type owl:Class ;
+          
+          rdfs:label "Software"@en-us ;
+          
+          rdfs:subClassOf :InformationResource ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :description ;
+                            owl:allValuesFrom rdfs:Literal
+                          ] ;
+          
+          vitro:shortDef "Computer program and its related documentation; directs the operation of a computer"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Speech
+
+:Speech rdf:type owl:Class ;
+        
+        rdfs:label "Speech"@en-us ;
+        
+        rdfs:subClassOf bibo:Document ;
+        
+        vitro:shortDef "Text of a speech written in preparation for delivery of the speech."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#StateOrProvince
+
+:StateOrProvince rdf:type owl:Class ;
+                 
+                 rdfs:label "State Or Province"@en-us ;
+                 
+                 rdfs:subClassOf :GeopoliticalEntity ;
+                 
+                 vitro:exampleAnnot "Minnesota; Michigan; Indiana; New York; Quebec; Manitoba; Ontario"^^xsd:string ;
+                 
+                 vitro:shortDef "One of a number of areas or communities having their own governments and forming a federation under a sovereign government, as in the US."^^xsd:string ;
+                 
+                 vitro:descriptionAnnot "Source of the Short Definition: http://www.thefreedictionary.com/state."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Student
+
+:Student rdf:type owl:Class ;
+         
+         rdfs:label "Student"@en-us ;
+         
+         rdfs:subClassOf foaf:Person ;
+         
+         vitro:shortDef "A person who is enrolled in an educational institution."^^xsd:string ;
+         
+         vitro:exampleAnnot "Use only if no specific subclasses of core:Student describe the person."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#StudentOrganization
+
+:StudentOrganization rdf:type owl:Class ;
+                     
+                     rdfs:label "Student Organization"@en-us ;
+                     
+                     rdfs:subClassOf foaf:Organization ;
+                     
+                     vitro:shortDef "A student organization is an organization, operated by students at a university, whose membership normally consists only of students."^^xsd:string ;
+                     
+                     vitro:exampleAnnot "Dancin' Gators"^^xsd:string ;
+                     
+                     vitro:descriptionAnnot "Definition take from here: http://en.wikipedia.org/wiki/Student_society"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#SubnationalRegion
+
+:SubnationalRegion rdf:type owl:Class ;
+                   
+                   rdfs:label "Subnational Region"@en-us ;
+                   
+                   rdfs:subClassOf :GeographicRegion ;
+                   
+                   vitro:exampleAnnot "Boroughs; townships; districts; the Midwest"^^xsd:string ;
+                   
+                   rdfs:comment "For example, the Midwest, northeast U.S."^^xsd:string ;
+                   
+                   vitro:descriptionAnnot "Short definition was partially taken from http://en.wikipedia.org/wiki/Subnational_entity."^^xsd:string ;
+                   
+                   vitro:shortDef "Smaller administrative division into which a country may be divided."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#TeacherRole
+
+:TeacherRole rdf:type owl:Class ;
+             
+             rdfs:label "Teacher Role"@en-us ;
+             
+             rdfs:subClassOf :Role ;
+             
+             vitro:shortDef "A role of serving as an educator"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Team
+
+:Team rdf:type owl:Class ;
+      
+      rdfs:label "Team"@en-us ;
+      
+      rdfs:subClassOf foaf:Group ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasCurrentMember ;
+                        owl:allValuesFrom foaf:Person
+                      ] ;
+      
+      vitro:shortDef "An informal organization brought together for the purposes of a project or event."^^xsd:string ;
+      
+      vitro:exampleAnnot "VIVO Outreach Team; VIVO Ontology Team"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Translation
+
+:Translation rdf:type owl:Class ;
+             
+             rdfs:label "Translation"@en-us ;
+             
+             rdfs:subClassOf bibo:Document ;
+             
+             vitro:shortDef "The result of rendering a work from one language to another"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#TransnationalRegion
+
+:TransnationalRegion rdf:type owl:Class ;
+                     
+                     rdfs:label "Transnational Region"@en-us ;
+                     
+                     rdfs:subClassOf :GeographicRegion ;
+                     
+                     vitro:shortDef "Any region that goes beyond national boundaries and does not fit into any subclass of core:TransnationalRegion."^^xsd:string ;
+                     
+                     vitro:exampleAnnot "None as yet."^^xsd:string ;
+                     
+                     vitro:descriptionAnnot "Not sure how to access the \"Editor's Comments\". But as North America is a continent, it would be placed directly into the continent subclass and viewable through this class along with any other subclass entities."^^xsd:string ;
+                     
+                     rdfs:comment "sub-Saharan Africa, North America"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#URLLink
+
+:URLLink rdf:type owl:Class ;
+         
+         rdfs:label "URLLink"@en-us ;
+         
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :linkURI ;
+                           owl:minCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :rank ;
+                           owl:allValuesFrom xsd:int
+                         ] ;
+         
+         vitro:descriptionAnnot "The full URL."^^xsd:string ;
+         
+         vitro:shortDef "Uniform Resource Locator (URL) specifies where an identified resource is available and the mechanism for retrieving it."^^xsd:string ;
+         
+         vitro:exampleAnnot "http://info.slis.indiana.edu/~katy/"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#USPostalAddress
+
+:USPostalAddress rdf:type owl:Class ;
+                 
+                 rdfs:label "US Postal Address"@en-us ;
+                 
+                 rdfs:subClassOf :Address ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :addressState ;
+                                   owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :addressPostalCode ;
+                                   owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :addressCity ;
+                                   owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                 ] ;
+                 
+                 vitro:exampleAnnot "1320 East 10th Street, Wells Library 021 Bloomington, IN 47405"^^xsd:string ;
+                 
+                 vitro:shortDef "Formal address in US postal address system. "^^xsd:string ;
+                 
+                 vitro:descriptionAnnot "US postal address follow the format street, apt or office number (optional), city, state, and zipcode."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#UndergraduateAdvisingRelationship
+
+:UndergraduateAdvisingRelationship rdf:type owl:Class ;
+                                   
+                                   rdfs:label "Undergraduate Advising Relationship"@en-us ;
+                                   
+                                   rdfs:subClassOf :AdvisingRelationship ;
+                                   
+                                   vitro:shortDef "An advisory relationship in which a professor advises an undergraduate student."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#UndergraduateStudent
+
+:UndergraduateStudent rdf:type owl:Class ;
+                      
+                      rdfs:label "Undergraduate Student"@en-us ;
+                      
+                      rdfs:subClassOf :Student ;
+                      
+                      vitro:shortDef "A person registered in an undergraduate program leading to a bachelor's degree or an undergraduate diploma or certificate."^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#University
+
+:University rdf:type owl:Class ;
+            
+            rdfs:label "University"@en-us ;
+            
+            rdfs:subClassOf foaf:Organization ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :offersDegree ;
+                              owl:allValuesFrom :AcademicDegree
+                            ] ;
+            
+            vitro:shortDef "An institution of higher education and research, which grants academic degrees in a variety of subjects, and provides both undergraduate education and postgraduate education."^^xsd:string ;
+            
+            vitro:descriptionAnnot "Definition taken from: http://en.wikipedia.org/wiki/University"^^xsd:string ;
+            
+            vitro:exampleAnnot "University of Florida; Washington University in St. Louis"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#Video
+
+:Video rdf:type owl:Class ;
+       
+       rdfs:label "Video"@en-us ;
+       
+       rdfs:subClassOf bibo:AudioVisualDocument ;
+       
+       vitro:shortDef "Audiovisual recording in video format"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#WorkingPaper
+
+:WorkingPaper rdf:type owl:Class ;
+              
+              rdfs:label "Working Paper"@en-us ;
+              
+              rdfs:subClassOf bibo:Document ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :placeOfPublication ;
+                                owl:allValuesFrom rdfs:Literal
+                              ] ;
+              
+              vitro:shortDef "A document created as a basis for discussion or a very early draft of a formal paper"^^xsd:string .
+
+
+
+###  http://vivoweb.org/ontology/core#WorkshopSeries
+
+:WorkshopSeries rdf:type owl:Class ;
+                
+                rdfs:label "Workshop Series"@en-us ;
+                
+                rdfs:subClassOf :EventSeries ;
+                
+                vitro:shortDef "An organized series of workshop events, whether repetitions of the same workshop or multiple different workshops."^^xsd:string ;
+                
+                vitro:descriptionAnnot "Use workshop for individual events."^^xsd:string .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+
